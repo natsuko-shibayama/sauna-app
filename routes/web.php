@@ -20,7 +20,9 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 
-//管理画面
-Route::get('/admin/top', function(){
-    return view('admin.top');
-})->name('admin.top');
+//管理画面トップページ
+Route::middleware('auth')->group(function () {
+    Route::get('/admin/top', function(){
+        return view('admin.top');
+    })->name('admin.top');
+});
