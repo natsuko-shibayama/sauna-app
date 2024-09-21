@@ -1,0 +1,166 @@
+<mxfile host="65bd71144e">
+    <diagram id="Vhe5JXHIzLZxMB7o1-rx" name="ページ1">
+        <mxGraphModel dx="736" dy="626" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="#ffffff" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="&lt;font color=&quot;#333333&quot;&gt;ユーザーがサウナの情報を見る&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1C1C1C;" vertex="1" parent="1">
+                    <mxGeometry x="94" y="27" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="&lt;font color=&quot;#333333&quot;&gt;管理者がサウナの&lt;br&gt;情報を管理する&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1C1C1C;" vertex="1" parent="1">
+                    <mxGeometry x="495" y="27" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="ユーザー" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;strokeColor=#1C1C1C;fontColor=#333333;fillColor=#FFFFFF;" vertex="1" parent="1">
+                    <mxGeometry x="55" y="73" width="30" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="サウナアプリ" style="sketch=0;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#515151;shape=mxgraph.mscae.system_center.central_administration_site_sql;fontColor=#333333;" vertex="1" parent="1">
+                    <mxGeometry x="234" y="78" width="38" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="" style="endArrow=none;dashed=1;html=1;dashPattern=1 3;strokeWidth=2;fontColor=#333333;strokeColor=#FF9933;" edge="1" parent="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="157" y="625" as="sourcePoint"/>
+                        <mxPoint x="157" y="111" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="12" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#333333;fontColor=#333333;rounded=0;" edge="1" parent="1" source="7" target="9">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="262" y="209"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="7" value="サウナアプリに&lt;br&gt;アクセス" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#1C1C1C;fontColor=#333333;fillColor=#FFFFFF;" vertex="1" parent="1">
+                    <mxGeometry x="10" y="179" width="102" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="14" style="edgeStyle=none;rounded=0;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#333333;fontColor=#333333;" edge="1" parent="1" source="9" target="13">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="61" y="289"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="9" value="サウナアプリ&lt;br&gt;TOP画面&lt;br&gt;（一覧・検索画面）&lt;br&gt;を表示" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#1C1C1C;fontColor=#333333;fillColor=#FFFFFF;" vertex="1" parent="1">
+                    <mxGeometry x="202" y="248" width="120" height="77" as="geometry"/>
+                </mxCell>
+                <mxCell id="16" style="edgeStyle=none;rounded=0;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#333333;fontColor=#333333;" edge="1" parent="1" source="13" target="15">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="262" y="359"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="13" value="サウナ施設を検索&lt;br&gt;もしくは一覧から&lt;br&gt;選択" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#1C1C1C;fontColor=#333333;fillColor=#FFFFFF;" vertex="1" parent="1">
+                    <mxGeometry x="10" y="334" width="102" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" value="サウナの詳細画面を表示" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#1C1C1C;fontColor=#333333;fillColor=#FFFFFF;" vertex="1" parent="1">
+                    <mxGeometry x="202" y="391" width="120" height="45" as="geometry"/>
+                </mxCell>
+                <mxCell id="18" value="管理者" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;strokeColor=#1C1C1C;fontColor=#333333;fillColor=#FFFFFF;" vertex="1" parent="1">
+                    <mxGeometry x="444" y="73" width="30" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="19" value="管理画面" style="sketch=0;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#515151;shape=mxgraph.mscae.system_center.central_administration_site_sql;fontColor=#333333;" vertex="1" parent="1">
+                    <mxGeometry x="621" y="76" width="38" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="20" value="" style="endArrow=none;dashed=1;html=1;dashPattern=1 3;strokeWidth=2;fontColor=#333333;strokeColor=#FF9933;" edge="1" parent="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="561" y="1209" as="sourcePoint"/>
+                        <mxPoint x="557" y="99" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="24" style="edgeStyle=none;rounded=0;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#333333;fontColor=#333333;" edge="1" parent="1" source="21" target="23">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="651" y="207"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="21" value="管理画面に&lt;br&gt;アクセス" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#1C1C1C;fontColor=#333333;fillColor=#FFFFFF;" vertex="1" parent="1">
+                    <mxGeometry x="410" y="179" width="102" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="26" style="edgeStyle=none;rounded=0;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#333333;fontColor=#333333;" edge="1" parent="1" source="23" target="25">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="464" y="265"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="23" value="管理者ログイン&lt;br&gt;画面を表示" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#1C1C1C;fontColor=#333333;fillColor=#FFFFFF;" vertex="1" parent="1">
+                    <mxGeometry x="600" y="233" width="102" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="28" style="edgeStyle=none;rounded=0;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#333333;fontColor=#333333;" edge="1" parent="1" source="25" target="27">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="651" y="335"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="25" value="ログイン情報を入力し、ログインボタンを押す" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#1C1C1C;fontColor=#333333;fillColor=#FFFFFF;" vertex="1" parent="1">
+                    <mxGeometry x="394" y="305" width="139.5" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="30" value="正しい" style="edgeStyle=none;rounded=0;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#333333;fontColor=#FFFFFF;" edge="1" parent="1" source="27" target="29">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="32" value="正しくない" style="edgeStyle=none;rounded=0;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#333333;fontColor=#FFFFFF;" edge="1" parent="1" source="27" target="25">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="361" y="407"/>
+                            <mxPoint x="361" y="335"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="27" value="ログイン情報を&lt;br&gt;検証する" style="rhombus;whiteSpace=wrap;html=1;strokeColor=#1C1C1C;fontColor=#333333;fillColor=#FFFFFF;" vertex="1" parent="1">
+                    <mxGeometry x="583.5" y="367" width="135" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="35" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;fontColor=#FFFFFF;" edge="1" parent="1" source="29" target="33">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="29" value="管理画面の&lt;br&gt;TOP画面&lt;br&gt;（一覧・検索）" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#1C1C1C;fontColor=#333333;fillColor=#FFFFFF;" vertex="1" parent="1">
+                    <mxGeometry x="600" y="521" width="102" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="38" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;fontColor=#FFFFFF;" edge="1" parent="1" source="33" target="36">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="33" value="サウナ新規登録ボタンを押す" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#1C1C1C;fontColor=#333333;fillColor=#FFFFFF;" vertex="1" parent="1">
+                    <mxGeometry x="386" y="588" width="102" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="42" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;fontColor=#FFFFFF;" edge="1" parent="1" source="36" target="39">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="36" value="サウナ新規登録&lt;br&gt;画面表示" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#1C1C1C;fontColor=#333333;fillColor=#FFFFFF;" vertex="1" parent="1">
+                    <mxGeometry x="597" y="660" width="102" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="43" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;fontColor=#FFFFFF;" edge="1" parent="1" source="39" target="41">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="39" value="サウナ情報を入力して&lt;br&gt;登録ボタンを押す" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#1C1C1C;fontColor=#333333;fillColor=#FFFFFF;" vertex="1" parent="1">
+                    <mxGeometry x="390" y="742" width="102" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="45" value="正しい" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;fontColor=#FFFFFF;" edge="1" parent="1" source="41" target="44">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="46" value="正しくない" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;fontColor=#FFFFFF;" edge="1" parent="1" source="41" target="39">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="345" y="852"/>
+                            <mxPoint x="345" y="772"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="41" value="バリデーションを&lt;br&gt;チェックする" style="rhombus;whiteSpace=wrap;html=1;strokeColor=#1C1C1C;fontColor=#333333;fillColor=#FFFFFF;" vertex="1" parent="1">
+                    <mxGeometry x="583.5" y="812" width="135" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="48" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#333333;fontColor=#FFFFFF;" edge="1" parent="1" source="44" target="47">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="44" value="サウナ情報を&lt;br&gt;登録する" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#1C1C1C;fontColor=#333333;fillColor=#FFFFFF;" vertex="1" parent="1">
+                    <mxGeometry x="600" y="969" width="102" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="47" value="サウナ一覧を&lt;br&gt;表示" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#1C1C1C;fontColor=#333333;fillColor=#FFFFFF;" vertex="1" parent="1">
+                    <mxGeometry x="600" y="1097" width="102" height="60" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
