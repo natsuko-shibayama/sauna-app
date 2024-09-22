@@ -1,6 +1,6 @@
 <header class="text-gray-600 body-font  bg-green-300">
     <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
-        <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+        <a href="{{ route('admin.top') }}" class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
         <img src="{{ asset('storage/images/headerLogo.png') }}" alt="Logo" class="w-10 h-10 p-2 bg-white rounded-full border-white shadow-md animate-bounce">
         <span class="ml-3 text-xl text-gray-900">サウナアプリ管理画面</span>
         </a>

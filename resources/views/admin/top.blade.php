@@ -1,9 +1,15 @@
 <x-admin-layout>
     <h1 class="text-center mx-3 font-kaisei md:my-8 text-3xl">絞り込み検索</h1>
 
-    <form class="max-w-lg mx-auto">
+    <form class="max-w-lg mx-auto" method="GET">
         <div class="relative">
-            <input type="search" class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500" placeholder="施設名で検索" required />
+            <input
+                type="search"
+                class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
+                placeholder="施設名で検索"
+                name="name"
+                value="{{ $name }}"
+            />
             <button type="submit" class="absolute right-2.5 bottom-2.5 text-white bg-gray-100 hover:bg-gray-200 font-medium rounded-lg text-sm px-4 py-2 hover:shadow-sm hover:translate-y-0.5 transform transition">
                 <img src="{{ asset('storage/images/searchIcon.png') }}" alt="検索アイコン" class="w-6 h-6">
             </button>
@@ -30,28 +36,28 @@
         <div class="modal-content bg-white p-6 rounded-lg">
             <span class="closeModal cursor-pointer text-gray-500 text-2xl" id="closeCommitModal">&times;</span>
             <h2 class="text-xl font-bold mb-4">こだわり検索</h2>
-            <form>
+            <form method="GET">
                 <div>
-                    <input type="checkbox">
+                    <input type="checkbox" id="has_loyly" name="has_loyly" {{ $has_loyly ? 'checked' : null }}>
                     <label>ロウリュ</label>
                 </div>
                 <div>
-                    <input type="checkbox">
+                    <input type="checkbox" id="has_water_bath" name="has_water_bath" {{ $has_water_bath ? 'checked' : null }}>
                     <label>水風呂</label>
                 </div>
                 <div>
-                    <input type="checkbox">
+                    <input type="checkbox" id="has_outdoor_bath" name="has_outdoor_bath" {{ $has_outdoor_bath ? 'checked' : null }}>
                     <label>外気浴</label>
                 </div>
                 <div>
-                    <input type="checkbox">
+                    <input type="checkbox" id="has_chair" name="has_chair" {{ $has_chair ? 'checked' : null }}>
                     <label>ととのい椅子</label>
                 </div>
                 <div class="d-flex">
-                    <button class="text-white bg-green-400 p-4 rounded-lg shadow-md hover:bg-green-800" id="area">
+                    <button type="submit" class="text-white bg-green-400 p-4 rounded-lg shadow-md hover:bg-green-800">
                         検索
                     </button>
-                    <button class="text-red bg-white p-4 rounded-lg shadow-md hover:text-white hover:bg-red-500" id="area">
+                    <button type="button" id="kodawari_clear" class="text-red bg-white p-4 rounded-lg shadow-md hover:text-white hover:bg-red-500">
                         クリア
                     </button>
                 </div>
@@ -64,36 +70,36 @@
         <div class="modal-content bg-white p-6 rounded-lg">
             <span class="closeModal cursor-pointer text-gray-500 text-2xl" id="closeAriaModal">&times;</span>
             <h2 class="text-xl font-bold mb-4">エリア検索</h2>
-            <form>
+            <form method="GET">
                 <div>
-                    <input type="checkbox">
+                    <input type="checkbox" id="kanagawa" name="kanagawa" {{ $kanagawa ? 'checked' : null }}>
                     <label>神奈川</label>
                 </div>
                 <div>
-                    <input type="checkbox">
+                    <input type="checkbox" id="gunma" name="gunma" {{ $gunma ? 'checked' : null }}>
                     <label>群馬</label>
                 </div>
                 <div>
-                    <input type="checkbox">
+                    <input type="checkbox" id="tokyo" name="tokyo" {{ $tokyo ? 'checked' : null }}>
                     <label>東京</label>
                 </div>
                 <div>
-                    <input type="checkbox">
+                    <input type="checkbox" id="saitama" name="saitama" {{ $saitama ? 'checked' : null }}>
                     <label>埼玉</label>
                 </div>
                 <div>
-                    <input type="checkbox">
+                    <input type="checkbox" id="chiba" name="chiba" {{ $chiba ? 'checked' : null }}>
                     <label>千葉</label>
                 </div>
                 <div>
-                    <input type="checkbox">
+                    <input type="checkbox" id="ibaraki" name="ibaraki" {{ $ibaraki ? 'checked' : null }}>
                     <label>茨城</label>
                 </div>
                 <div class="d-flex">
-                    <button class="text-white bg-green-400 p-4 rounded-lg shadow-md hover:bg-green-800" id="area">
+                    <button type="submit" class="text-white bg-green-400 p-4 rounded-lg shadow-md hover:bg-green-800">
                         検索
                     </button>
-                    <button class="text-red bg-white p-4 rounded-lg shadow-md hover:text-white hover:bg-red-500" id="area">
+                    <button type="button" class="text-red bg-white p-4 rounded-lg shadow-md hover:text-white hover:bg-red-500" id="area_clear">
                         クリア
                     </button>
                 </div>
@@ -139,7 +145,8 @@
                         @csrf
                         <button
                             type="submit"
-                            class="flex text-white font-bold bg-yellow-400 border-0 py-2 px-6 focus:outline-none hover:bg-yellow-700 rounded"
+                            onclick="return confirm('本当に削除してもよろしいですか？');"
+                            class="flex text-white font-bold bg-red-400 border-0 py-2 px-6 focus:outline-none hover:bg-red-700 rounded"
                             >削除
                         </button>
                     </form>
