@@ -28,9 +28,15 @@ $(function(){
         $('#closeCommitModal').on('click' ,function(){
             commitModal.addClass('hidden');
         })
-
     });
 
+    // こだわりクリアボタン
+    $('#kodawari_clear').on('click', function(){
+        $('#has_loyly').prop('checked', false);
+        $('#has_water_bath').prop('checked', false);
+        $('#has_outdoor_bath').prop('checked', false);
+        $('#has_chair').prop('checked', false);
+    });
 
     // エリア検索モーダル
     $('#area').on('click', function() {
@@ -43,6 +49,16 @@ $(function(){
         $('#closeAriaModal').on('click' ,function(){
             ariaModal.addClass('hidden');
         })
+    });
+
+    // エリアクリアボタン
+    $('#area_clear').on('click', function(){
+        $('#kanagawa').prop('checked', false);
+        $('#gunma').prop('checked', false);
+        $('#tokyo').prop('checked', false);
+        $('#saitama').prop('checked', false);
+        $('#chiba').prop('checked', false);
+        $('#ibaraki').prop('checked', false);
     });
 })
 
