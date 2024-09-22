@@ -19,9 +19,9 @@ return new class extends Migration
             $table->text('city')->comment('市区町村');
             $table->text('address')->nullable()->comment('それ以降の住所');
             $table->text('access')->comment('アクセス');
-            $table->text('map')->nullable()->comment('地図');
-            $table->integer('price')->comment('料金');
-            $table->text('image')->comment('画像');
+            $table->text('location_map')->nullable()->comment('地図');
+            $table->text('price')->comment('料金');
+            $table->text('image_path')->nullable()->comment('画像');
             $table->text('sauna_comment')->comment('サウナの備考');
             $table->boolean('has_loyly')->comment('ロウリュの有無');
             $table->text('loyly_comment')->comment('ロウリュの備考');

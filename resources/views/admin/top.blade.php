@@ -118,7 +118,6 @@
         <tr>
             <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">施設名</th>
             <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">都道府県</th>
-            {{-- <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">詳細</th> --}}
             <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">編集</th>
             <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">削除</th>
         </tr>
@@ -128,26 +127,22 @@
             <tr>
                 <td class="px-4 py-3">{{ $sauna->name }}</td>
                 <td class="px-4 py-3">{{ $sauna->prefecture }}</td>
-                {{-- <td class="px-4 py-3">
-                    <button
-                        class="flex ml-auto text-gray-600 font-bold bg-green-200 border-0 py-2 px-6 focus:outline-none hover:text-white hover:bg-green-400 rounded"
-                        onclick=""
-                        >詳細
-                    </button>
-                </td> --}}
                 <td class="px-4 py-3 text-right">
                     <button
                         class="flex text-white font-bold bg-green-400 border-0 py-2 px-6 focus:outline-none hover:bg-green-700 rounded"
-                        onclick=""
+                        onclick="location.href='{{ route('admin.saunas.edit', ['saunaId' => $sauna->id]) }}'"
                         >編集
                     </button>
                 </td>
                 <td class="px-4 py-3 text-right text-lg text-gray-900">
-                    <button
-                        class="flex text-white font-bold bg-yellow-400 border-0 py-2 px-6 focus:outline-none hover:bg-yellow-700 rounded"
-                        onclick=""
-                        >削除
-                    </button>
+                    <form action="{{ route('admin.saunas.destroy', ['saunaId' => $sauna->id])}}" method="POST">
+                        @csrf
+                        <button
+                            type="submit"
+                            class="flex text-white font-bold bg-yellow-400 border-0 py-2 px-6 focus:outline-none hover:bg-yellow-700 rounded"
+                            >削除
+                        </button>
+                    </form>
                 </td>
             </tr>
         @endforeach

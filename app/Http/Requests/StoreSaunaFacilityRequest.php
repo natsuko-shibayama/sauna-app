@@ -28,7 +28,7 @@ class StoreSaunaFacilityRequest extends FormRequest
             'city' => 'required',
             'access' => 'required',
             'price' => 'required',
-            'image' => 'required',
+            'image_path' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
             'saunaComment' => 'required',
             'hasLoyly' => 'required',
             'loylyComment' => 'required',

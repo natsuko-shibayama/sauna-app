@@ -29,7 +29,13 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::prefix('saunas')->name('saunas.')->group(function () {
         // サウナ施設新規登録画面
         Route::get('create', [SaunaFacilityController::class, 'create'])->name('create');
-        // サウナ新規登録処理
+        // サウナ施設新規登録処理
         Route::post('store', [SaunaFacilityController::class, 'store'])->name('store');
+        // サウナ施設編集画面表示
+        Route::get('{saunaId}/edit', [SaunaFacilityController::class, 'edit'])->name('edit');
+        // サウナ施設更新処理
+        Route::post('{saunaId}/update', [SaunaFacilityController::class, 'update'])->name('update');
+        // サウナ施設削除処理
+        Route::post('{saunaId}/destroy', [SaunaFacilityController::class, 'destroy'])->name('destroy');
     });
 });
