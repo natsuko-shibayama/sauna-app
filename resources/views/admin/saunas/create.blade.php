@@ -6,7 +6,7 @@
                 <div class="flex flex-col text-center w-full mb-12">
                     <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">サウナ情報新規登録</h1>
                 </div>
-                <div class="lg:w-1/2 md:w-2/3 mx-auto">
+                <div class="lg:w-full md:w-full mx-auto">
                     <form action="{{ route('admin.saunas.store') }}" method="POST" class="space-y-6 flex flex-wrap -m-2" enctype="multipart/form-data">
                         @csrf
                         <div class="p-2 w-full">
@@ -103,11 +103,65 @@
                                 <label for="image_path" class="leading-7 text-sm text-gray-600">画像</label>
                                 <input type="file" id="image_path" name="image_path" value="{{ old('image_path') }}" class="col-span-2  p-2 rounded-lg">
                             </div>
-                             {{-- 画像のエラーメッセージ --}}
+                            {{-- 画像のエラーメッセージ --}}
                             @error('image')
                                 <div class="alert alert-danger text-red-700">{{ $message }}</div>
                             @enderror
                         </div>
+                        <div class="lg:w-full mx-auto overflow-auto">
+                            <table class="table-auto w-full text-left whitespace-no-wrap">
+                                <thead>
+                                    <tr>
+                                        <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">種類</th>
+                                        <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">温度</th>
+                                        <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">備考</th>
+                                        <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="sauna-table-body">
+                                    @php
+                                        // Determine how many rows to render based on old input or default to 1
+                                        $rows = old('sauna_type') ? count(old('sauna_type')) : 1;
+                                    @endphp
+
+                                    @for ($i = 0; $i < $rows; $i++)
+                                        <tr>
+                                            <td class="px-4 py-3">
+                                                <select name="sauna_type[]" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                                    <option value="1" {{ old('sauna_type.' . $i) == '1' ? 'selected' : '' }}>乾式サウナ（ドライサウナ）</option>
+                                                    <option value="2" {{ old('sauna_type.' . $i) == '2' ? 'selected' : '' }}>湿式サウナ（スチームサウナ）</option>
+                                                    <option value="3" {{ old('sauna_type.' . $i) == '3' ? 'selected' : '' }}>湿式サウナ（ミストサウナ）</option>
+                                                    <option value="4" {{ old('sauna_type.' . $i) == '4' ? 'selected' : '' }}>ロウリュサウナ</option>
+                                                </select>
+                                                <!-- Validation Error for sauna_type -->
+                                                @error('sauna_type.' . $i)
+                                                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                                                @enderror
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                <input type="text" name="temperature[]" value="{{ old('temperature.' . $i) }}" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                                <!-- Validation Error for temperature -->
+                                                @error('temperature.' . $i)
+                                                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                                                @enderror
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                <textarea name="note[]" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out">{{ old('note.' . $i) }}</textarea>
+                                                <!-- Validation Error for note -->
+                                                @error('note.' . $i)
+                                                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                                                @enderror
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                <button type="button" class="remove-row bg-red-500 text-white px-4 py-2 rounded">削除</button>
+                                            </td>
+                                        </tr>
+                                    @endfor
+                                </tbody>
+                            </table>
+                            <button type="button" id="add-row" class="bg-blue-500 text-white px-4 py-2 rounded mt-4">追加</button>
+                        </div>
+
                         <div class="p-2 w-full">
                             <div class="relative">
                                 <label for="saunaComment" class="leading-7 text-sm text-gray-600">サウナの備考</label>

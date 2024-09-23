@@ -120,41 +120,41 @@
             </div>
             <div class="lg:w-2/3 w-full mx-auto overflow-auto">
                 <table class="table-auto w-full text-left whitespace-no-wrap">
-    <thead>
-        <tr>
-            <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">施設名</th>
-            <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">都道府県</th>
-            <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">編集</th>
-            <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">削除</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach ($saunas as $sauna)
-            <tr>
-                <td class="px-4 py-3">{{ $sauna->name }}</td>
-                <td class="px-4 py-3">{{ $sauna->prefecture }}</td>
-                <td class="px-4 py-3 text-right">
-                    <button
-                        class="flex text-white font-bold bg-green-400 border-0 py-2 px-6 focus:outline-none hover:bg-green-700 rounded"
-                        onclick="location.href='{{ route('admin.saunas.edit', ['saunaId' => $sauna->id]) }}'"
-                        >編集
-                    </button>
-                </td>
-                <td class="px-4 py-3 text-right text-lg text-gray-900">
-                    <form action="{{ route('admin.saunas.destroy', ['saunaId' => $sauna->id])}}" method="POST">
-                        @csrf
-                        <button
-                            type="submit"
-                            onclick="return confirm('本当に削除してもよろしいですか？');"
-                            class="flex text-white font-bold bg-red-400 border-0 py-2 px-6 focus:outline-none hover:bg-red-700 rounded"
-                            >削除
-                        </button>
-                    </form>
-                </td>
-            </tr>
-        @endforeach
-    </tbody>
-</table>
+                    <thead>
+                        <tr>
+                            <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">施設名</th>
+                            <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">都道府県</th>
+                            <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">編集</th>
+                            <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">削除</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($saunaFacilities as $saunaFacility)
+                            <tr>
+                                <td class="px-4 py-3">{{ $saunaFacility->name }}</td>
+                                <td class="px-4 py-3">{{ $saunaFacility->prefecture }}</td>
+                                <td class="px-4 py-3 text-right">
+                                    <button
+                                        class="flex text-white font-bold bg-green-400 border-0 py-2 px-6 focus:outline-none hover:bg-green-700 rounded"
+                                        onclick="location.href='{{ route('admin.saunas.edit', ['saunaFacilityId' => $saunaFacility->id]) }}'"
+                                        >編集
+                                    </button>
+                                </td>
+                                <td class="px-4 py-3 text-right text-lg text-gray-900">
+                                    <form action="{{ route('admin.saunas.destroy', ['saunaFacilityId' => $saunaFacility->id])}}" method="POST">
+                                        @csrf
+                                        <button
+                                            type="submit"
+                                            onclick="return confirm('本当に削除してもよろしいですか？');"
+                                            class="flex text-white font-bold bg-red-400 border-0 py-2 px-6 focus:outline-none hover:bg-red-700 rounded"
+                                            >削除
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
     </section>
