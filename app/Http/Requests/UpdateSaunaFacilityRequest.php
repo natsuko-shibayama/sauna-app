@@ -22,7 +22,27 @@ class UpdateSaunaFacilityRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required',
+            'postal_code' => 'required',
+            'prefecture' => 'required',
+            'city' => 'required',
+            'access' => 'required',
+            'price' => 'required',
+            'image_path' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
+            'saunaComment' => 'required',
+            'hasLoyly' => 'required',
+            'loylyComment' => 'required',
+            'hasWaterbath' => 'required',
+            'waterbathComment' => 'required',
+            'hasOutdoorbath' => 'required',
+            'hasChair' => 'required',
+            'chairComment' => 'required',
+            'sauna_type' => 'required|array',
+            'sauna_type.*' => 'required|integer|in:1,2,3,4',//1,2,3,4という値の入力しか受け付けない
+            'temperature' => 'required|array',
+            'temperature.*' => 'required|string|max:40',
+            'note' => 'required|array',
+            'note.*' => 'required|string',
         ];
     }
 }

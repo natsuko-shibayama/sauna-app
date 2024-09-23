@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SaunaFacility extends Model
+class Sauna extends Model
 {
     use HasFactory;
 
-    public function saunas()
+    public function saunaFacility()
     {
-        return $this->hasMany(Sauna::class);
+        return $this->belongsTo(SaunaFacility::class);
     }
 }

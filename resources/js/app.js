@@ -62,4 +62,49 @@ $(function(){
     });
 })
 
+$(function(){
+    const maxRows = 5;
+    let rowCount = $('#sauna-table-body tr').length;
+
+    function createNewRow() {
+        return `
+            <tr>
+                <td class="px-4 py-3">
+                    <select name="sauna_type[]" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                        <option value="1">乾式サウナ（ドライサウナ）</option>
+                        <option value="2">湿式サウナ（スチームサウナ）</option>
+                        <option value="3">湿式サウナ（ミストサウナ）</option>
+                        <option value="4">ロウリュサウナ</option>
+                    </select>
+                </td>
+                <td class="px-4 py-3">
+                    <input type="text" name="temperature[]" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                </td>
+                <td class="px-4 py-3 text-right">
+                    <textarea name="note[]" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
+                </td>
+                <td class="px-4 py-3">
+                    <button type="button" class="remove-row bg-red-500 text-white px-2 py-1 rounded">削除</button>
+                </td>
+            </tr>
+        `;
+    }
+
+    // Add Row Button Click Event
+    $('#add-row').click(function() {
+        if(rowCount < maxRows) {
+            $('#sauna-table-body').append(createNewRow());
+            rowCount++;
+        } else {
+            alert('最大5行まで追加できます。');
+        }
+    });
+
+    // Remove Row Button Click Event (using event delegation)
+    $('#sauna-table-body').on('click', '.remove-row', function() {
+        $(this).closest('tr').remove();
+        rowCount--;
+    });
+});
+
 

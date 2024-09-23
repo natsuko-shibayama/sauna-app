@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreSaunaFacilityRequest;
 use App\Http\Requests\UpdateSaunaFacilityRequest;
+use App\Models\Sauna;
 use App\Models\SaunaFacility;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -19,9 +20,9 @@ class SaunaFacilityController extends Controller
     {
         // dd($request);
         $query = $this->getQuery($request);
-        $saunas = $query->get(); //ここで初めてDBにアクセス
+        $saunaFacilities = $query->get(); //ここで初めてDBにアクセス
         return view('admin.top', [
-            'saunas' => $saunas,
+            'saunaFacilities' => $saunaFacilities,
             'name' => $request->name,
             'has_loyly' => $request->has_loyly,
             'has_water_bath' => $request->has_water_bath,
@@ -103,26 +104,26 @@ class SaunaFacilityController extends Controller
      */
     public function store(StoreSaunaFacilityRequest $request)
     {
-        // dd("サウナ新規登録処理です", $request->name);
+        // dd("サウナ新規登録処理です", $request);
         // インスタンス作成
-        $sauna = new SaunaFacility();
+        $saunaFacility = new SaunaFacility();
         // 呼び出してpostされた値を代入していく（DBの処理）
-        $sauna->name = $request->name;
-        $sauna->postal_code = $request->postal_code;
-        $sauna->prefecture = $request->prefecture;
-        $sauna->city = $request->city;
-        $sauna->address = $request->address;
-        $sauna->access = $request->access;
-        $sauna->location_map = $request->location_map;
-        $sauna->price = $request->price;
-        $sauna->sauna_comment = $request->saunaComment;
-        $sauna->has_loyly = $request->input('hasLoyly');
-        $sauna->loyly_comment = $request->loylyComment;
-        $sauna->has_water_bath = $request->input('hasWaterbath');;
-        $sauna->water_bath_comment = $request->waterbathComment;
-        $sauna->has_outdoor_bath = $request->input('hasOutdoorbath');;
-        $sauna->has_chair = $request->input('hasChair');
-        $sauna->chair_comment = $request->chairComment;
+        $saunaFacility->name = $request->name;
+        $saunaFacility->postal_code = $request->postal_code;
+        $saunaFacility->prefecture = $request->prefecture;
+        $saunaFacility->city = $request->city;
+        $saunaFacility->address = $request->address;
+        $saunaFacility->access = $request->access;
+        $saunaFacility->location_map = $request->location_map;
+        $saunaFacility->price = $request->price;
+        $saunaFacility->sauna_comment = $request->saunaComment;
+        $saunaFacility->has_loyly = $request->input('hasLoyly');
+        $saunaFacility->loyly_comment = $request->loylyComment;
+        $saunaFacility->has_water_bath = $request->input('hasWaterbath');;
+        $saunaFacility->water_bath_comment = $request->waterbathComment;
+        $saunaFacility->has_outdoor_bath = $request->input('hasOutdoorbath');;
+        $saunaFacility->has_chair = $request->input('hasChair');
+        $saunaFacility->chair_comment = $request->chairComment;
 
         // 画像のアップロードの処理。ファイルがある場合、画像をpublic/imagesに保存。
         if($request->hasFile('image_path')){
@@ -130,8 +131,19 @@ class SaunaFacilityController extends Controller
         }else{
             $imagePath = null;
         }
-        $sauna->image_path = $imagePath;
-        $sauna->save();
+        $saunaFacility->image_path = $imagePath;
+
+        $saunaFacility->save();
+        // サウナ詳細情報登録
+        $saunaNum = count($request->sauna_type);
+        for($i = 0; $i < $saunaNum; $i++){
+            $sauna = new Sauna();
+            $sauna->type = $request->sauna_type[$i];
+            $sauna->temperature = $request->temperature[$i];
+            $sauna->note = $request->note[$i];
+            $sauna->sauna_facility_id = $saunaFacility->id;
+            $sauna->save();
+        }
         // トップ画面にリダイレクト
         return redirect()->route('admin.top');
 
@@ -147,14 +159,20 @@ class SaunaFacilityController extends Controller
 
     /**
      * @param \App\Models\SaunaFacility $saunaFacility
-     * @param int $saunaId
+     * @param int $saunaFacilityId
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function edit(SaunaFacility $saunaFacility, int $saunaId)
+    public function edit(int $saunaFacilityId)
     {
-        $sauna = SaunaFacility::findOrFail($saunaId);
+        // dd("サウナ新規登録処理です", $saunaFacilityId);
+        // $saunaFacility = SaunaFacility::findOrFail($saunaFacilityId);
+        // 指定された ID の SaunaFacility を取得し、関連する Saunas もロード
+        $saunaFacility = SaunaFacility::with('saunas')->findOrFail($saunaFacilityId);
+        // dd($saunaFacility->saunas);
+
         return view('admin.saunas.edit', [
-            'sauna' => $sauna
+            'saunaFacility' => $saunaFacility,
+            'saunas' => $saunaFacility->saunas
         ]);
     }
 
@@ -162,52 +180,62 @@ class SaunaFacilityController extends Controller
      * Summary of update
      * @param \App\Http\Requests\UpdateSaunaFacilityRequest $request
      * @param \App\Models\SaunaFacility $saunaFacility
-     * @param int $saunaId
+     * @param int $saunaFacilityId
      * @return mixed|\Illuminate\Http\RedirectResponse
      */
-    public function update(UpdateSaunaFacilityRequest $request, SaunaFacility $saunaFacility, int $saunaId)
+    public function update(UpdateSaunaFacilityRequest $request, SaunaFacility $saunaFacility, int $saunaFacilityId)
     {
-        $sauna = SaunaFacility::findOrFail($saunaId);
-        $sauna->name = $request->name;
-        $sauna->postal_code = $request->postal_code;
-        $sauna->prefecture = $request->prefecture;
-        $sauna->city = $request->city;
-        $sauna->address = $request->address;
-        $sauna->access = $request->access;
-        $sauna->location_map = $request->location_map;
-        $sauna->price = $request->price;
-        $sauna->sauna_comment = $request->saunaComment;
-        $sauna->has_loyly = $request->input('hasLoyly');
-        $sauna->loyly_comment = $request->loylyComment;
-        $sauna->has_water_bath = $request->input('hasWaterbath');;
-        $sauna->water_bath_comment = $request->waterbathComment;
-        $sauna->has_outdoor_bath = $request->input('hasOutdoorbath');;
-        $sauna->has_chair = $request->input('hasChair');
-        $sauna->chair_comment = $request->chairComment;
+        // dd("サウナ新規登録処理です", $request, $saunaFacilityId);
+        $saunaFacility = SaunaFacility::findOrFail($saunaFacilityId);
+        $saunaFacility->name = $request->name;
+        $saunaFacility->postal_code = $request->postal_code;
+        $saunaFacility->prefecture = $request->prefecture;
+        $saunaFacility->city = $request->city;
+        $saunaFacility->address = $request->address;
+        $saunaFacility->access = $request->access;
+        $saunaFacility->location_map = $request->location_map;
+        $saunaFacility->price = $request->price;
+        $saunaFacility->sauna_comment = $request->saunaComment;
+        $saunaFacility->has_loyly = $request->input('hasLoyly');
+        $saunaFacility->loyly_comment = $request->loylyComment;
+        $saunaFacility->has_water_bath = $request->input('hasWaterbath');;
+        $saunaFacility->water_bath_comment = $request->waterbathComment;
+        $saunaFacility->has_outdoor_bath = $request->input('hasOutdoorbath');;
+        $saunaFacility->has_chair = $request->input('hasChair');
+        $saunaFacility->chair_comment = $request->chairComment;
         // 画像のアップロード処理
         if ($request->hasFile('image_path')) {
             // 既存の画像がある場合は削除
-            if ($sauna->image_path) {
-                Storage::disk('public')->delete($sauna->image_path);
+            if ($saunaFacility->image_path) {
+                Storage::disk('public')->delete($saunaFacility->image_path);
             }
 
             // 新しい画像をstorage/app/public/imagesに保存
             $imagePath = $request->file('image_path')->store('images', 'public');
-            $sauna->image_path = $imagePath; //インスタンスに代入
+            $saunaFacility->image_path = $imagePath; //インスタンスに代入
+        }
+        $saunaFacility->save();
+
+        // サウナ詳細情報登録
+        $saunaNum = count($request->sauna_type);
+        for($i = 0; $i < $saunaNum; $i++){
+            $sauna = Sauna::findOrFail($request->saunaId[$i]);
+            $sauna->type = $request->sauna_type[$i];
+            $sauna->temperature = $request->temperature[$i];
+            $sauna->note = $request->note[$i];
+            $sauna->save();
         }
 
-        $sauna->save();
-        return redirect()->route('admin.top', ['saunaId' => $saunaId]);
+        return redirect()->route('admin.top', ['saunaFacilityId' => $saunaFacilityId]);
     }
 
     /**
      * Remove the specified resource from storage.
      */
     // サウナ施設削除処理
-    public function destroy(SaunaFacility $saunaFacility, int $saunaId)
+    public function destroy(SaunaFacility $saunaFacility, int $saunaFacilityId)
     {
-        // dd($saunaId);
-        $sauna = SaunaFacility::findOrFail($saunaId);
+        $sauna = SaunaFacility::findOrFail($saunaFacilityId);
         $sauna->delete();
         return redirect()->route('admin.top');
     }
