@@ -35,23 +35,23 @@
     <div id="commitmentModal" class="modal hidden fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center">
         <div class="modal-content bg-white p-6 rounded-lg">
             <span class="closeModal cursor-pointer text-gray-500 text-2xl" id="closeCommitModal">&times;</span>
-            <h2 class="text-xl font-bold mb-4">こだわり検索</h2>
+            <h2 class="text-center text-xl font-bold mb-4">こだわり検索</h2>
             <form method="GET">
-                <div>
+                <div class="ml-3 pb-3">
                     <input type="checkbox" id="has_loyly" name="has_loyly" {{ $has_loyly ? 'checked' : null }}>
-                    <label>ロウリュ</label>
+                    <label for="has_loyly">ロウリュ</label>
                 </div>
-                <div>
+                <div class="ml-3 pb-3">
                     <input type="checkbox" id="has_water_bath" name="has_water_bath" {{ $has_water_bath ? 'checked' : null }}>
-                    <label>水風呂</label>
+                    <label for="has_water_bath">水風呂</label>
                 </div>
-                <div>
+                <div class="ml-3 pb-3">
                     <input type="checkbox" id="has_outdoor_bath" name="has_outdoor_bath" {{ $has_outdoor_bath ? 'checked' : null }}>
-                    <label>外気浴</label>
+                    <label for="has_outdoor_bath">外気浴</label>
                 </div>
-                <div>
+                <div class="ml-3 pb-3">
                     <input type="checkbox" id="has_chair" name="has_chair" {{ $has_chair ? 'checked' : null }}>
-                    <label>ととのい椅子</label>
+                    <label for="has_chair">ととのい椅子</label>
                 </div>
                 <div class="d-flex">
                     <button type="submit" class="text-white bg-green-400 p-4 rounded-lg shadow-md hover:bg-green-800">
@@ -69,31 +69,31 @@
     <div id="areaModal" class="modal hidden fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center">
         <div class="modal-content bg-white p-6 rounded-lg">
             <span class="closeModal cursor-pointer text-gray-500 text-2xl" id="closeAriaModal">&times;</span>
-            <h2 class="text-xl font-bold mb-4">エリア検索</h2>
+            <h2 class="text-center text-xl font-bold mb-4">エリア検索</h2>
             <form method="GET">
-                <div>
+                <div class="ml-3 pb-3">
                     <input type="checkbox" id="kanagawa" name="kanagawa" {{ $kanagawa ? 'checked' : null }}>
-                    <label>神奈川</label>
+                    <label for="kanagawa">神奈川</label>
                 </div>
-                <div>
+                <div class="ml-3 pb-3">
                     <input type="checkbox" id="gunma" name="gunma" {{ $gunma ? 'checked' : null }}>
-                    <label>群馬</label>
+                    <label for="gunma">群馬</label>
                 </div>
-                <div>
+                <div class="ml-3 pb-3">
                     <input type="checkbox" id="tokyo" name="tokyo" {{ $tokyo ? 'checked' : null }}>
-                    <label>東京</label>
+                    <label for="tokyo">東京</label>
                 </div>
-                <div>
+                <div class="ml-3 pb-3">
                     <input type="checkbox" id="saitama" name="saitama" {{ $saitama ? 'checked' : null }}>
-                    <label>埼玉</label>
+                    <label for="saitama">埼玉</label>
                 </div>
-                <div>
+                <div class="ml-3 pb-3">
                     <input type="checkbox" id="chiba" name="chiba" {{ $chiba ? 'checked' : null }}>
-                    <label>千葉</label>
+                    <label for="has_loyly">千葉</label>
                 </div>
-                <div>
+                <div class="ml-3 pb-3">
                     <input type="checkbox" id="ibaraki" name="ibaraki" {{ $ibaraki ? 'checked' : null }}>
-                    <label>茨城</label>
+                    <label for="chiba">茨城</label>
                 </div>
                 <div class="d-flex">
                     <button type="submit" class="text-white bg-green-400 p-4 rounded-lg shadow-md hover:bg-green-800">
