@@ -70,7 +70,7 @@ class UserController extends Controller
             $query->whereIn('prefecture', $selectedAreas);
         }
 
-        // $query->where('recommendation', 1);
+        $query->where('recommendation', 1);
         return $query;
     }
 

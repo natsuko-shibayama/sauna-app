@@ -332,6 +332,32 @@
                             @enderror
                         </div>
                         <div class="p-2 w-full">
+                            <div class="relative">
+                                <label for="recommendation" class="leading-7 text-sm text-gray-600">おすすめする！</label>
+                                <input
+                                    type="radio"
+                                    value="1"
+                                    id="recommendation"
+                                    name="recommendation"
+                                    class="col-span-2 border border-gray-300 p-2 rounded-lg"
+                                    {{ old('recommendation', $saunaFacility->recommendation) == '1' ? 'checked' : '' }}
+                                >
+                                <label for="recommendation" class="leading-7 text-sm text-gray-600">また今度で...！</label>
+                                <input
+                                    type="radio"
+                                    value="0"
+                                    id="recommendation"
+                                    name="recommendation"
+                                    class="col-span-2 border border-gray-300 p-2 rounded-lg"
+                                    {{ old('recommendation', $saunaFacility->recommendation) == '0' ? 'checked' : '' }}
+                                >
+                            </div>
+                            {{-- おすすめのエラーメッセージ --}}
+                            @error('recommendation')
+                                <div class="alert alert-danger text-red-700">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="p-2 w-full">
                             <button
                                 type="submit"
                                 class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">更新</button>

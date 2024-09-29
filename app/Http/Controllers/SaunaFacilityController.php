@@ -127,6 +127,7 @@ class SaunaFacilityController extends Controller
             $saunaFacility->water_bath_comment = $request->waterbathComment;
             $saunaFacility->has_outdoor_bath = $request->input('hasOutdoorbath');;
             $saunaFacility->has_chair = $request->input('hasChair');
+            $saunaFacility->recommendation = $request->input('recommendation');
             $saunaFacility->chair_comment = $request->chairComment;
 
             // 画像のアップロードの処理。ファイルがある場合、画像をpublic/imagesに保存。
@@ -216,6 +217,7 @@ class SaunaFacilityController extends Controller
             $saunaFacility->water_bath_comment = $request->waterbathComment;
             $saunaFacility->has_outdoor_bath = $request->input('hasOutdoorbath');;
             $saunaFacility->has_chair = $request->input('hasChair');
+            $saunaFacility->recommendation = $request->input('recommendation');
             $saunaFacility->chair_comment = $request->chairComment;
             // 画像のアップロード処理
             if ($request->hasFile('image_path')) {
