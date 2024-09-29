@@ -1,10 +1,15 @@
 <x-admin-layout>
     <div class="max-w-4xl mx-auto py-8">
-
         <section class="text-gray-600 body-font relative">
             <div class="container px-5 py-24 mx-auto">
                 <div class="flex flex-col text-center w-full mb-12">
                     <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">サウナ情報編集</h1>
+                    {{-- カスタムエラーメッセージの表示 --}}
+                    @if ($errors->has('error'))
+                        <div class="alert text-red">
+                            {{ $errors->first('error') }}
+                        </div>
+                    @endif
                 </div>
                 <div class="lg:w-full md:w-full mx-auto">
                     <form action="{{ route('admin.saunas.update', ['saunaFacilityId' => $saunaFacility->id]) }}" method="POST" class="space-y-6　flex flex-wrap -m-2" enctype="multipart/form-data">
@@ -121,7 +126,6 @@
                                 </thead>
                                 <tbody id="sauna-table-body">
                                     @php
-                                        // Determine how many rows to render based on old input or default to 1
                                         $rows = $saunas->count();
                                     @endphp
 
@@ -130,14 +134,12 @@
                                             $sauna = $saunas[$i];
                                         @endphp
 
-                                        <input type="hidden" name="saunaId[]" value="{{ $sauna->id }}">
                                         <tr>
                                             <td class="px-4 py-3">
                                                 <select name="sauna_type[]" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                                     @php
                                                         $saunaType = old('sauna_type.'.$i) ?? $sauna->type;
                                                     @endphp
-
                                                     <option value="1" {{ $saunaType == '1' ? 'selected' : '' }}>乾式サウナ（ドライサウナ）</option>
                                                     <option value="2" {{ $saunaType == '2' ? 'selected' : '' }}>湿式サウナ（スチームサウナ）</option>
                                                     <option value="3" {{ $saunaType == '3' ? 'selected' : '' }}>湿式サウナ（ミストサウナ）</option>
@@ -170,6 +172,15 @@
                                     @endfor
                                 </tbody>
                             </table>
+                            @error('sauna_type')
+                                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                            @enderror
+                            @error('temperature')
+                                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                            @enderror
+                            @error('note')
+                                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                            @enderror
                             <button type="button" id="add-row" class="bg-blue-500 text-white px-4 py-2 rounded mt-4">追加</button>
                         </div>
                         <div class="p-2 w-full">
@@ -317,6 +328,32 @@
                             </div>
                             {{-- ととのい椅子備考のエラーメッセージ --}}
                             @error('chairComment')
+                                <div class="alert alert-danger text-red-700">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="p-2 w-full">
+                            <div class="relative">
+                                <label for="recommendation" class="leading-7 text-sm text-gray-600">おすすめする！</label>
+                                <input
+                                    type="radio"
+                                    value="1"
+                                    id="recommendation"
+                                    name="recommendation"
+                                    class="col-span-2 border border-gray-300 p-2 rounded-lg"
+                                    {{ old('recommendation', $saunaFacility->recommendation) == '1' ? 'checked' : '' }}
+                                >
+                                <label for="recommendation" class="leading-7 text-sm text-gray-600">また今度で...！</label>
+                                <input
+                                    type="radio"
+                                    value="0"
+                                    id="recommendation"
+                                    name="recommendation"
+                                    class="col-span-2 border border-gray-300 p-2 rounded-lg"
+                                    {{ old('recommendation', $saunaFacility->recommendation) == '0' ? 'checked' : '' }}
+                                >
+                            </div>
+                            {{-- おすすめのエラーメッセージ --}}
+                            @error('recommendation')
                                 <div class="alert alert-danger text-red-700">{{ $message }}</div>
                             @enderror
                         </div>

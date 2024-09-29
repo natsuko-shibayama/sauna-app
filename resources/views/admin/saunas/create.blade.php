@@ -5,6 +5,12 @@
             <div class="container px-5 py-24 mx-auto">
                 <div class="flex flex-col text-center w-full mb-12">
                     <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">サウナ情報新規登録</h1>
+                        {{-- カスタムエラーメッセージの表示 --}}
+                        @if ($errors->has('error'))
+                            <div class="alert text-red">
+                                {{ $errors->first('error') }}
+                            </div>
+                        @endif
                 </div>
                 <div class="lg:w-full md:w-full mx-auto">
                     <form action="{{ route('admin.saunas.store') }}" method="POST" class="space-y-6 flex flex-wrap -m-2" enctype="multipart/form-data">
@@ -307,6 +313,32 @@
                             </div>
                             {{-- ととのい椅子備考のエラーメッセージ --}}
                             @error('chairComment')
+                                <div class="alert alert-danger text-red-700">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="p-2 w-full">
+                            <div class="relative">
+                                <label for="recommendation" class="leading-7 text-sm text-gray-600">おすすめする！</label>
+                                <input
+                                    type="radio"
+                                    value="1"
+                                    id="recommendation"
+                                    name="recommendation"
+                                    class="col-span-2 border border-gray-300 p-2 rounded-lg"
+                                    {{ old('recommendation') == '1' ? 'checked' : '' }}
+                                >
+                                <label for="recommendation" class="leading-7 text-sm text-gray-600">また今度で...！</label>
+                                <input
+                                    type="radio"
+                                    value="0"
+                                    id="recommendation"
+                                    name="recommendation"
+                                    class="col-span-2 border border-gray-300 p-2 rounded-lg"
+                                    {{ old('recommendation') == '0' ? 'checked' : '' }}
+                                >
+                            </div>
+                            {{-- おすすめのエラーメッセージ --}}
+                            @error('recommendation')
                                 <div class="alert alert-danger text-red-700">{{ $message }}</div>
                             @enderror
                         </div>

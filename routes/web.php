@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SaunaController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\SaunaFacilityController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +20,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+// 管理者の認証機能
 require __DIR__.'/auth.php';
 
 
@@ -45,3 +47,9 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         // });
     });
 });
+
+
+// ユーザー画面
+Route::get('/', [UserController::class, 'top'])->name('top');
+// ユーザー側のサウナ詳細画面
+Route::get('saunaFacilities/{saunaFacilityId}', [UserController::class, 'saunaFacilities'])->name('saunaFacilities');

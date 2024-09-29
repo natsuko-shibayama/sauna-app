@@ -1,5 +1,6 @@
 <x-admin-layout>
-    <h1 class="text-center mx-3 font-kaisei md:my-8 text-3xl">絞り込み検索</h1>
+    {{-- <h1 class="text-center mx-3 font-kaisei md:my-8 text-3xl">絞り込み検索</h1> --}}
+    <h1 class="text-center text-3xl font-medium kaisei-decol-bold mx-3 md:my-8 text-gray-900">サウナ一覧</h1>
 
     <form class="max-w-lg mx-auto" method="GET">
         <div class="relative">
@@ -109,13 +110,14 @@
 
 
     <section class="text-gray-600 body-font">
-        <div class="container px-5 py-24 mx-auto">
+        <div class="container px-5 py-5 mx-auto">
             <div class="flex flex-col text-center w-full mb-20">
-                <h1 class="sm:text-4xl text-3xl font-medium title-font mb-2 text-gray-900">サウナ一覧</h1>
                 <button
-                    class="flex mx-auto mt-16 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"
+                    class="flex items-center justify-center mx-auto mt-16 text-white bg-cyan-400 border-0 py-2 px-8 focus:outline-none hover:bg-cyan-700 rounded text-lg"
                     onclick="location.href='{{ route('admin.saunas.create') }}'"
-                    >新規登録
+                    >
+                    {{-- <img src="{{ asset('storage/images/プラスのアイコン素材.png') }}" alt="Icon" class="w-7 h-7 mr-2"> --}}
+                    <span class="text-2xl">+&nbsp;</span>新規登録
                 </button>
             </div>
             <div class="lg:w-2/3 w-full mx-auto overflow-auto">
@@ -135,9 +137,11 @@
                                 <td class="px-4 py-3">{{ $saunaFacility->prefecture }}</td>
                                 <td class="px-4 py-3 text-right">
                                     <button
-                                        class="flex text-white font-bold bg-green-400 border-0 py-2 px-6 focus:outline-none hover:bg-green-700 rounded"
+                                        class="flex text-white font-bold bg-green-400 border-0 py-2 px-6 focus:outline-none hover:bg-green-200 rounded"
                                         onclick="location.href='{{ route('admin.saunas.edit', ['saunaFacilityId' => $saunaFacility->id]) }}'"
-                                        >編集
+                                        >
+                                        <img src="{{ asset('storage/images/無料のブログの投稿、編集アイコン素材 3.png') }}" alt="Icon" class="w-6 h-6 ">
+                                        {{-- 編集 --}}
                                     </button>
                                 </td>
                                 <td class="px-4 py-3 text-right text-lg text-gray-900">
@@ -147,7 +151,9 @@
                                             type="submit"
                                             onclick="return confirm('本当に削除してもよろしいですか？');"
                                             class="flex text-white font-bold bg-red-400 border-0 py-2 px-6 focus:outline-none hover:bg-red-700 rounded"
-                                            >削除
+                                            >
+                                            <img src="{{ asset('storage/images/ゴミ箱のフリーアイコン素材 7.png') }}" alt="Icon" class="w-6 h-6">
+                                            {{-- 削除 --}}
                                         </button>
                                     </form>
                                 </td>
