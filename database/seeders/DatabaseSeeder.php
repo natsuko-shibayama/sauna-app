@@ -20,5 +20,10 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
             'password' => 'password123',
         ]);
+
+        $this->call([
+            SaunaFacilitySeeder::class,
+            SaunaSeeder::class
+        ]);
     }
 }

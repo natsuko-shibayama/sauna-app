@@ -154,50 +154,55 @@ $(function(){
     });
 });
 
-// $(function(){
-//     var updateCarouselControls = function() {
-//         var scrollWidth = $('#saunaElement').outerWidth(true) * 3; // 3つの要素の幅
-//         var carouselWidth = $('#carousel').outerWidth();
-//         console.log('Element width:', $('#saunaElement').outerWidth(true));
-//         console.log('Total scrollWidth:', scrollWidth);
-//         console.log('Carousel width:', carouselWidth);
+$(document).ready(function(){
+    var $carousel = $('#carousel');
+    var $saunaElements = $('.saunaElement');
+    var $next = $('#next');
+    var $prev = $('#prev');
 
-//         if (carouselWidth > scrollWidth) {
-//             $('#next').show();
-//         } else {
-//             $('#next').hide();
-//         }
-//     };
+    // スクロール量を計算する関数
+    function calculateScrollAmount() {
+        var carouselWidth = $carousel.outerWidth();
+        var saunaWidth = $saunaElements.first().outerWidth(true);
+        var visibleCount = Math.floor(carouselWidth / saunaWidth);
+        return visibleCount * saunaWidth;
+    }
 
-//     updateCarouselControls(); // 初期ロードで実行
-//     $(window).resize(updateCarouselControls); // ウィンドウリサイズ時にも実行
+    // ナビゲーションボタンの表示/非表示を制御する関数
+    function updateCarouselControls() {
+        var totalScrollWidth = $carousel[0].scrollWidth;
+        var visibleWidth = $carousel.outerWidth();
 
+        if (totalScrollWidth > visibleWidth) {
+            $next.show();
+            $prev.show();
+        } else {
+            $next.hide();
+            $prev.hide();
+        }
+    }
 
-//     $('#next').on('click', function(){
-//         var scrollWidth = $('#saunaElement').outerWidth(true) * 3;
-//         $('#carousel').animate({
-//             scrollLeft: '+=' + scrollWidth
-//         }, 'slow');
-//     });
+    // 初期設定
+    updateCarouselControls();
 
-//     $('#prev').on('click', function(){
-//         var scrollWidth = $('#saunaElement').outerWidth(true) * 3;
-//         $('#carousel').animate({
-//             scrollLeft: '-=' + scrollWidth
-//         }, 'slow');
-//     });
-// });
+    // ウインドウリサイズ時に再計算
+    $(window).resize(function(){
+        updateCarouselControls();
+    });
 
-// $(document).ready(function(){
-//     $('#carousel').on('scroll', function(){
-//         var sideScroll = $(this).scrollLeft();
-//         console.log('sideScroll:', sideScroll);
+    // 次へボタンのクリックイベント
+    $next.on('click', function(){
+        var scrollAmount = calculateScrollAmount();
+        $carousel.animate({
+            scrollLeft: '+=' + scrollAmount
+        }, 'slow');
+    });
 
-//         if(sideScroll >= 600){
-//             console.log("検索も動いちゃうよー");
-//         }
-//     });
-// });
-
-
-
+    // 前へボタンのクリックイベント
+    $prev.on('click', function(){
+        var scrollAmount = calculateScrollAmount();
+        $carousel.animate({
+            scrollLeft: '-=' + scrollAmount
+        }, 'slow');
+    });
+});

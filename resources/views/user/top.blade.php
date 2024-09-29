@@ -141,10 +141,10 @@
     <section class="text-gray-600 body-font">
         <div class="container px-5 py-24 mx-auto">
             <div class="flex -m-4 w-full">
-                {{-- <button id="prev">◀︎</button> --}}
+                <button id="prev">◀︎</button>
                 <div id="carousel" class="flex transition duration-300 ease-in-out whitespace-nowrap overflow-x-auto">
                     @foreach ( $saunaFacilities as $saunaFacility )
-                        <div class="p-4" id="saunaElement" style="width:450px;">
+                        <div class="p-4 saunaElement" style="width:450px;">
                             <div class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg">
                                 <img class="lg:h-48 md:h-36 w-full object-cover object-center" src="{{ asset('storage/'.$saunaFacility->image_path) }}" alt="blog">
                                 <div class="p-6">
@@ -205,7 +205,7 @@
 
                     @endforeach
                 </div>
-                {{-- <button id="next">▶︎</button> --}}
+                <button id="next">▶︎</button>
             </div>
         </div>
     </section>

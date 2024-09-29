@@ -30,6 +30,7 @@ return new class extends Migration
             $table->boolean('has_outdoor_bath')->comment('外気浴の有無');
             $table->boolean('has_chair')->comment('ととのい椅子の有無');
             $table->text('chair_comment')->comment('ととのい椅子の備考');
+            $table->tinyInteger('recommendation')->comment('おすすめ情報');
             $table->timestamps();  // 作成日時・更新日時
         });
     }
