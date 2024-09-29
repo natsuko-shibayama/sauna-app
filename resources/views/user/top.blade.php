@@ -140,7 +140,7 @@
     {{-- おすすめサウナ一覧 --}}
     <section class="text-gray-600 body-font">
         <div class="container px-5 py-24 mx-auto">
-            <h1 class="text-center mx-3 font-kaisei md:my-8 text-3xl">埼玉のおすすめ...</h1>
+            <h1 class="text-center mx-3 font-kaisei md:my-8 text-3xl">おすすめ。</h1>
             <div class="flex -m-4 w-full">
                 {{-- <button id="prev">◀︎</button> --}}
                 <div id="carousel" class="flex transition duration-300 ease-in-out whitespace-nowrap overflow-x-auto">
