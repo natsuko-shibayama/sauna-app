@@ -15,7 +15,54 @@ if (typeof $ === 'undefined') {
 }
 
 
-// 検索画面
+// 検索画面ー管理者画面
+$(function(){
+    // こだわり検索モーダル
+    $('#commitment').on('click', function(){
+        let commitModal = $('#commitmentModal');
+        if(commitModal.hasClass('hidden')){
+            commitModal.removeClass('hidden');
+        }else{
+            commitModal.addClass('hidden');
+        }
+        $('#closeCommitModal').on('click' ,function(){
+            commitModal.addClass('hidden');
+        })
+    });
+
+    // こだわりクリアボタン
+    $('#kodawari_clear').on('click', function(){
+        $('#has_loyly').prop('checked', false);
+        $('#has_water_bath').prop('checked', false);
+        $('#has_outdoor_bath').prop('checked', false);
+        $('#has_chair').prop('checked', false);
+    });
+
+    // エリア検索モーダル
+    $('#area').on('click', function() {
+        let ariaModal = $('#areaModal');
+        if(ariaModal.hasClass('hidden')){
+            ariaModal.removeClass('hidden');
+        }else{
+            ariaModal.addClass('hidden');
+        }
+        $('#closeAriaModal').on('click' ,function(){
+            ariaModal.addClass('hidden');
+        })
+    });
+
+    // エリアクリアボタン
+    $('#area_clear').on('click', function(){
+        $('#kanagawa').prop('checked', false);
+        $('#gunma').prop('checked', false);
+        $('#tokyo').prop('checked', false);
+        $('#saitama').prop('checked', false);
+        $('#chiba').prop('checked', false);
+        $('#ibaraki').prop('checked', false);
+    });
+})
+
+// 検索画面ーユーザ画面
 $(function(){
     // こだわり検索モーダル
     $('#commitment').on('click', function(){
@@ -106,5 +153,51 @@ $(function(){
         rowCount--;
     });
 });
+
+// $(function(){
+//     var updateCarouselControls = function() {
+//         var scrollWidth = $('#saunaElement').outerWidth(true) * 3; // 3つの要素の幅
+//         var carouselWidth = $('#carousel').outerWidth();
+//         console.log('Element width:', $('#saunaElement').outerWidth(true));
+//         console.log('Total scrollWidth:', scrollWidth);
+//         console.log('Carousel width:', carouselWidth);
+
+//         if (carouselWidth > scrollWidth) {
+//             $('#next').show();
+//         } else {
+//             $('#next').hide();
+//         }
+//     };
+
+//     updateCarouselControls(); // 初期ロードで実行
+//     $(window).resize(updateCarouselControls); // ウィンドウリサイズ時にも実行
+
+
+//     $('#next').on('click', function(){
+//         var scrollWidth = $('#saunaElement').outerWidth(true) * 3;
+//         $('#carousel').animate({
+//             scrollLeft: '+=' + scrollWidth
+//         }, 'slow');
+//     });
+
+//     $('#prev').on('click', function(){
+//         var scrollWidth = $('#saunaElement').outerWidth(true) * 3;
+//         $('#carousel').animate({
+//             scrollLeft: '-=' + scrollWidth
+//         }, 'slow');
+//     });
+// });
+
+// $(document).ready(function(){
+//     $('#carousel').on('scroll', function(){
+//         var sideScroll = $(this).scrollLeft();
+//         console.log('sideScroll:', sideScroll);
+
+//         if(sideScroll >= 600){
+//             console.log("検索も動いちゃうよー");
+//         }
+//     });
+// });
+
 
 

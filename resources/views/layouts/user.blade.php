@@ -24,7 +24,7 @@
         <div class="min-h-screen bg-white">
 
             {{-- ヘッダーをここに直書きしてもいいけど、見にくいのでコンポーネント化してincludeで読み込んでます --}}
-            @include('components.admin.header')
+            @include('components.user.header')
 
             <!-- Page Content -->
             <main>

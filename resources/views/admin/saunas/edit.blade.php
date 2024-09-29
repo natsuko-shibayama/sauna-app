@@ -5,6 +5,12 @@
             <div class="container px-5 py-24 mx-auto">
                 <div class="flex flex-col text-center w-full mb-12">
                     <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">サウナ情報編集</h1>
+                    {{-- カスタムエラーメッセージの表示 --}}
+                    @if ($errors->has('error'))
+                        <div class="alert text-red">
+                            {{ $errors->first('error') }}
+                        </div>
+                    @endif
                 </div>
                 <div class="lg:w-full md:w-full mx-auto">
                     <form action="{{ route('admin.saunas.update', ['saunaFacilityId' => $saunaFacility->id]) }}" method="POST" class="space-y-6　flex flex-wrap -m-2" enctype="multipart/form-data">
@@ -121,7 +127,6 @@
                                 </thead>
                                 <tbody id="sauna-table-body">
                                     @php
-                                        // Determine how many rows to render based on old input or default to 1
                                         $rows = $saunas->count();
                                     @endphp
 
@@ -130,14 +135,12 @@
                                             $sauna = $saunas[$i];
                                         @endphp
 
-                                        <input type="hidden" name="saunaId[]" value="{{ $sauna->id }}">
                                         <tr>
                                             <td class="px-4 py-3">
                                                 <select name="sauna_type[]" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                                     @php
                                                         $saunaType = old('sauna_type.'.$i) ?? $sauna->type;
                                                     @endphp
-
                                                     <option value="1" {{ $saunaType == '1' ? 'selected' : '' }}>乾式サウナ（ドライサウナ）</option>
                                                     <option value="2" {{ $saunaType == '2' ? 'selected' : '' }}>湿式サウナ（スチームサウナ）</option>
                                                     <option value="3" {{ $saunaType == '3' ? 'selected' : '' }}>湿式サウナ（ミストサウナ）</option>
