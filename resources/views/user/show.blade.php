@@ -4,6 +4,9 @@
     <section class="text-gray-600 body-font">
         <div class="container px-5 py-5 mx-auto">
             <div class="lg:w-2/3 w-full mx-auto overflow-auto pb-2">
+                <img class="lg:h-48 md:h-36 w-full object-cover object-center" src="{{ asset('storage/'.$saunaFacility->image_path) }}" alt="blog">
+            </div>
+            <div class="lg:w-2/3 w-full mx-auto overflow-auto pb-2">
                 <h3 class="mx-1 my-4 text-xl">サウナ種類</h3>
                 @if ($saunaFacility->saunas->isNotEmpty())
                 <table class="table-fixed w-full text-left whitespace-no-wrap">

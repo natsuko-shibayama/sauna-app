@@ -34,42 +34,47 @@ class UserController extends Controller
 
     private function getQuery(Request $request)
     {
-        $query = SaunaFacility::query();
-
-        // 施設名で検索
-        if ($request->filled('name')) {
-            $query->where('name', 'like', '%' . $request->name . '%');
-        }
-
+        $query = SaunaFacility::query(); //クエリ取得するための変数定義
         // こだわり検索
-        if ($request->filled('has_loyly')) {
-            $query->where('has_loyly', true);
+        if($request->name){
+            $query->where('name', 'like', "%{$request->name}%");//クエリに部分一致の条件を追加
+        }
+        if($request->has_loyly){
+            $query->where('has_loyly', 1);
+        }
+        if($request->has_water_bath){
+            $query->where('has_water_bath', 1);
+        }
+        if($request->has_outdoor_bath){
+            $query->where('has_outdoor_bath', 1);
+        }
+        if($request->has_chair){
+            $query->where('has_chair', 1);
         }
 
-        if ($request->filled('has_water_bath')) {
-            $query->where('has_water_bath', true);
-        }
-
-        if ($request->filled('has_outdoor_bath')) {
-            $query->where('has_outdoor_bath', true);
-        }
-
-        if ($request->filled('has_chair')) {
-            $query->where('has_chair', true);
-        }
-
+        $areas = [];
         // エリア検索
-        $areas = ['kanagawa', 'gunma', 'tokyo', 'saitama', 'chiba', 'ibaraki'];
-        $selectedAreas = [];
-        foreach ($areas as $area) {
-            if ($request->filled($area)) {
-                $selectedAreas[] = $area;
-            }
+        if($request->kanagawa){
+            $areas[] = '神奈川県';
         }
-        if (!empty($selectedAreas)) {
-            $query->whereIn('prefecture', $selectedAreas);
+        if($request->gunma){
+            $areas[] = '群馬県';
         }
-
+        if($request->tokyo){
+            $areas[] = '東京都';
+        }
+        if($request->saitama){
+            $areas[] = '埼玉県';
+        }
+        if($request->chiba){
+            $areas[] = '千葉県';
+        }
+        if($request->ibaraki){
+            $areas[] = '茨城県';
+        }
+        if(count($areas) > 0){
+            $query->whereIn('prefecture', $areas);
+        }
         $query->where('recommendation', 1);
         return $query;
     }

@@ -65,20 +65,20 @@ $(function(){
 // 検索画面ーユーザ画面
 $(function(){
     // こだわり検索モーダル
-    $('#commitment').on('click', function(){
-        let commitModal = $('#commitmentModal');
+    $('#user_commitment').on('click', function(){
+        let commitModal = $('#user_commitmentModal');
         if(commitModal.hasClass('hidden')){
             commitModal.removeClass('hidden');
         }else{
             commitModal.addClass('hidden');
         }
-        $('#closeCommitModal').on('click' ,function(){
+        $('#user_closeCommitModal').on('click' ,function(){
             commitModal.addClass('hidden');
         })
     });
 
     // こだわりクリアボタン
-    $('#kodawari_clear').on('click', function(){
+    $('#user_kodawari_clear').on('click', function(){
         $('#has_loyly').prop('checked', false);
         $('#has_water_bath').prop('checked', false);
         $('#has_outdoor_bath').prop('checked', false);
@@ -86,20 +86,20 @@ $(function(){
     });
 
     // エリア検索モーダル
-    $('#area').on('click', function() {
-        let ariaModal = $('#areaModal');
+    $('#user_area').on('click', function() {
+        let ariaModal = $('#user_areaModal');
         if(ariaModal.hasClass('hidden')){
             ariaModal.removeClass('hidden');
         }else{
             ariaModal.addClass('hidden');
         }
-        $('#closeAriaModal').on('click' ,function(){
+        $('#user_closeAriaModal').on('click' ,function(){
             ariaModal.addClass('hidden');
         })
     });
 
     // エリアクリアボタン
-    $('#area_clear').on('click', function(){
+    $('#user_area_clear').on('click', function(){
         $('#kanagawa').prop('checked', false);
         $('#gunma').prop('checked', false);
         $('#tokyo').prop('checked', false);

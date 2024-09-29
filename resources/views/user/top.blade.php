@@ -20,13 +20,13 @@
             </form>
 
             <div class="flex justify-center space-x-4 mt-4">
-                <button class="bg-gray-200 p-4 rounded-lg shadow-md hover:bg-gray-300" id="commitment">
+                <button class="bg-gray-200 p-4 rounded-lg shadow-md hover:bg-gray-300" id="user_commitment">
                     <div class="flex items-center space-x-2">
                         <img src="{{ asset('storage/images/こだわり.png') }}" alt="Icon" class="w-6 h-6">
                         <span>こだわり検索</span>
                     </div>
                 </button>
-                <button class="bg-gray-200 p-4 rounded-lg shadow-md hover:bg-gray-300" id="area">
+                <button class="bg-gray-200 p-4 rounded-lg shadow-md hover:bg-gray-300" id="user_area">
                     <div class="flex items-center space-x-2">
                         <img src="{{ asset('storage/images/エリア.png') }}" alt="Icon" class="w-6 h-6">
                         <span>エリア検索</span>
@@ -42,32 +42,32 @@
     </div>
 
     {{-- こだわり検索モーダル --}}
-    <div id="commitmentModal" class="modal hidden fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center">
+    <div id="user_commitmentModal" class="modal hidden fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center">
         <div class="modal-content bg-white p-6 rounded-lg">
-            <span class="closeModal cursor-pointer text-gray-500 text-2xl" id="closeCommitModal">&times;</span>
+            <span class="closeModal cursor-pointer text-gray-500 text-2xl" id="user_closeCommitModal">&times;</span>
             <h2 class="text-center text-xl font-bold mb-4">こだわり検索</h2>
             <form method="GET">
                 <div class="ml-3 pb-3">
                     <input type="checkbox" id="has_loyly" name="has_loyly"
-                     {{-- {{ $has_loyly ? 'checked' : null }} --}}
+                     {{ $has_loyly ? 'checked' : null }}
                      >
                     <label for="has_loyly">ロウリュ</label>
                 </div>
                 <div class="ml-3 pb-3">
                     <input type="checkbox" id="has_water_bath" name="has_water_bath"
-                    {{-- {{ $has_water_bath ? 'checked' : null }} --}}
+                    {{ $has_water_bath ? 'checked' : null }}
                     >
                     <label for="has_water_bath">水風呂</label>
                 </div>
                 <div class="ml-3 pb-3">
                     <input type="checkbox" id="has_outdoor_bath" name="has_outdoor_bath"
-                    {{-- {{ $has_outdoor_bath ? 'checked' : null }} --}}
+                    {{ $has_outdoor_bath ? 'checked' : null }}
                     >
                     <label for="has_outdoor_bath">外気浴</label>
                 </div>
                 <div class="ml-3 pb-3">
                     <input type="checkbox" id="has_chair" name="has_chair"
-                    {{-- {{ $has_chair ? 'checked' : null }} --}}
+                    {{ $has_chair ? 'checked' : null }}
                     >
                     <label for="has_chair">ととのい椅子</label>
                 </div>
@@ -75,7 +75,7 @@
                     <button type="submit" class="text-white bg-green-400 p-4 rounded-lg shadow-md hover:bg-green-800">
                         検索
                     </button>
-                    <button type="button" id="kodawari_clear" class="text-red bg-white p-4 rounded-lg shadow-md hover:text-white hover:bg-red-500">
+                    <button type="button" id="user_kodawari_clear" class="text-red bg-white p-4 rounded-lg shadow-md hover:text-white hover:bg-red-500">
                         クリア
                     </button>
                 </div>
@@ -84,44 +84,44 @@
     </div>
 
     {{-- エリア検索モーダル --}}
-    <div id="areaModal" class="modal hidden fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center">
+    <div id="user_areaModal" class="modal hidden fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center">
         <div class="modal-content bg-white p-6 rounded-lg">
-            <span class="closeModal cursor-pointer text-gray-500 text-2xl" id="closeAriaModal">&times;</span>
+            <span class="closeModal cursor-pointer text-gray-500 text-2xl" id="user_closeAriaModal">&times;</span>
             <h2 class="text-center text-xl font-bold mb-4">エリア検索</h2>
             <form method="GET">
                 <div class="ml-3 pb-3">
                     <input type="checkbox" id="kanagawa" name="kanagawa"
-                    {{-- {{ $kanagawa ? 'checked' : null }} --}}
+                    {{ $kanagawa ? 'checked' : null }}
                     >
                     <label for="kanagawa">神奈川</label>
                 </div>
                 <div class="ml-3 pb-3">
                     <input type="checkbox" id="gunma" name="gunma"
-                    {{-- {{ $gunma ? 'checked' : null }} --}}
+                    {{ $gunma ? 'checked' : null }}
                     >
                     <label for="gunma">群馬</label>
                 </div>
                 <div class="ml-3 pb-3">
                     <input type="checkbox" id="tokyo" name="tokyo"
-                    {{-- {{ $tokyo ? 'checked' : null }} --}}
+                    {{ $tokyo ? 'checked' : null }}
                     >
                     <label for="tokyo">東京</label>
                 </div>
                 <div class="ml-3 pb-3">
                     <input type="checkbox" id="saitama" name="saitama"
-                    {{-- {{ $saitama ? 'checked' : null }} --}}
+                    {{ $saitama ? 'checked' : null }}
                     >
                     <label for="saitama">埼玉</label>
                 </div>
                 <div class="ml-3 pb-3">
                     <input type="checkbox" id="chiba" name="chiba"
-                    {{-- {{ $chiba ? 'checked' : null }} --}}
+                    {{ $chiba ? 'checked' : null }}
                     >
                     <label for="chiba">千葉</label>
                 </div>
                 <div class="ml-3 pb-3">
                     <input type="checkbox" id="ibaraki" name="ibaraki"
-                    {{-- {{ $ibaraki ? 'checked' : null }} --}}
+                    {{ $ibaraki ? 'checked' : null }}
                     >
                     <label for="ibaraki">茨城</label>
                 </div>
@@ -129,7 +129,7 @@
                     <button type="submit" class="text-white bg-green-400 p-4 rounded-lg shadow-md hover:bg-green-800">
                         検索
                     </button>
-                    <button type="button" class="text-red bg-white p-4 rounded-lg shadow-md hover:text-white hover:bg-red-500" id="area_clear">
+                    <button type="button" class="text-red bg-white p-4 rounded-lg shadow-md hover:text-white hover:bg-red-500" id="user_area_clear">
                         クリア
                     </button>
                 </div>
@@ -137,11 +137,12 @@
         </div>
     </div>
 
-    {{-- サウナ一覧 --}}
+    {{-- おすすめサウナ一覧 --}}
     <section class="text-gray-600 body-font">
         <div class="container px-5 py-24 mx-auto">
+            <h1 class="text-center mx-3 font-kaisei md:my-8 text-3xl">埼玉のおすすめ...</h1>
             <div class="flex -m-4 w-full">
-                <button id="prev">◀︎</button>
+                {{-- <button id="prev">◀︎</button> --}}
                 <div id="carousel" class="flex transition duration-300 ease-in-out whitespace-nowrap overflow-x-auto">
                     @foreach ( $saunaFacilities as $saunaFacility )
                         <div class="p-4 saunaElement" style="width:450px;">
@@ -205,7 +206,7 @@
 
                     @endforeach
                 </div>
-                <button id="next">▶︎</button>
+                {{-- <button id="next">▶︎</button> --}}
             </div>
         </div>
     </section>
