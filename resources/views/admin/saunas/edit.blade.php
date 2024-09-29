@@ -1,6 +1,5 @@
 <x-admin-layout>
     <div class="max-w-4xl mx-auto py-8">
-
         <section class="text-gray-600 body-font relative">
             <div class="container px-5 py-24 mx-auto">
                 <div class="flex flex-col text-center w-full mb-12">
@@ -173,6 +172,15 @@
                                     @endfor
                                 </tbody>
                             </table>
+                            @error('sauna_type')
+                                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                            @enderror
+                            @error('temperature')
+                                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                            @enderror
+                            @error('note')
+                                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                            @enderror
                             <button type="button" id="add-row" class="bg-blue-500 text-white px-4 py-2 rounded mt-4">追加</button>
                         </div>
                         <div class="p-2 w-full">
