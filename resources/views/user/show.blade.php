@@ -1,9 +1,11 @@
 <x-user-layout>
     <h1 class="text-center mx-3 font-kaisei md:my-8 text-3xl">{{ $saunaFacility->name }}</h1>
-
     <section class="text-gray-600 body-font">
         <div class="container px-5 py-5 mx-auto">
-            <div class="lg:w-2/3 w-full mx-auto overflow-auto pb-2">
+            <div class="lg:w-2/3 w-full mx-auto pb-2">
+                <h3><a class="mr-2" href="{{ route('top') }}">TOP</a><span class="mr-2">></span><span>{{ $saunaFacility->name }}詳細</span></h3>
+            </div>
+            <div class="lg:w-2/3 w-full mx-auto pb-2">
                 <img class="lg:h-48 md:h-36 w-full object-cover object-center" src="{{ asset('storage/'.$saunaFacility->image_path) }}" alt="blog">
             </div>
             <div class="lg:w-2/3 w-full mx-auto overflow-auto pb-2">

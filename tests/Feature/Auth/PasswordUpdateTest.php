@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Auth;
 
-use App\Models\User;
+use App\Models\Admin;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
@@ -13,10 +13,11 @@ class PasswordUpdateTest extends TestCase
 
     public function test_password_can_be_updated(): void
     {
-        $user = User::factory()->create();
+         /** @var \App\Models\Admin $admin */
+        $admin = Admin::factory()->create();
 
         $response = $this
-            ->actingAs($user)
+            ->actingAs($admin)
             ->from('/profile')
             ->put('/password', [
                 'current_password' => 'password',
@@ -28,15 +29,17 @@ class PasswordUpdateTest extends TestCase
             ->assertSessionHasNoErrors()
             ->assertRedirect('/profile');
 
-        $this->assertTrue(Hash::check('new-password', $user->refresh()->password));
+        $this->assertTrue(Hash::check('new-password', $admin->refresh()->password));
     }
 
     public function test_correct_password_must_be_provided_to_update_password(): void
     {
-        $user = User::factory()->create();
+        /** 下記の記載で、$adminの型を明示的に指定し、intelephenseが正しく型を認識する*/
+         /** @var \App\Models\Admin $admin */
+        $admin = Admin::factory()->create();
 
         $response = $this
-            ->actingAs($user)
+            ->actingAs($admin)
             ->from('/profile')
             ->put('/password', [
                 'current_password' => 'wrong-password',
