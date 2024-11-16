@@ -15,5 +15,8 @@
                 >ログアウト
             </button>
         </form> --}}
+        <a href="{{ route('auth.google') }}" class="btn btn-primary">
+            Googleでログイン
+        </a>
     </div>
 </header>
