@@ -5,10 +5,10 @@
         <span class="ml-3 text-3xl text-white font-bold font-kaisei">サウナアプリ管理画面</span>
         </a>
 
-        <form method="POST" action="{{ route('logout') }}" class=" md:ml-auto">
+        <form method="POST" action="{{ route('admin.logout') }}" class=" md:ml-auto">
             @csrf
             <button
-                href="route('logout')"
+                href="route('admin.logout')"
                 onclick="event.preventDefault();
                             this.closest('form').submit();"
                 class="font-kaisei inline-flex items-center bg-white text-slate-500 border-0 py-1 px-3 focus:outline-none hover:bg-zinc-400 rounded hover:text-white mt-4 md:mt-0"
