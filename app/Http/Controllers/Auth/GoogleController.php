@@ -49,10 +49,11 @@ class GoogleController extends Controller
                 $user->save();
             }
 
-            Auth::login($user);
+            Auth::guard('web')->login($user);
 
             return redirect()->route('top');
         } catch (\Exception $e) {
+            // todo エラーを画面に表示
             return redirect('top')->withErrors('Google認証に失敗しました。');
         }
     }
