@@ -52,7 +52,7 @@
                     <h1 class="title-font text-lg font-medium text-gray-90">{{ $saunaFacility->has_water_bath ? "有": "無" }}</h1>
                 </div>
                 <div class="flex items-center mx-1 my-4">
-                    {{ $saunaFacility->loyly_comment }}
+                    {{ $saunaFacility->water_bath_comment }}
                 </div>
             </div>
             <div class="lg:w-2/3 w-full mx-auto pb-2">
