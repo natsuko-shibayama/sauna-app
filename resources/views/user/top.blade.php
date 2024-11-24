@@ -1,4 +1,10 @@
 <x-user-layout>
+    {{-- エラーメッセージの表示 --}}
+    @if ($errors->any())
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4 text-center" role="alert">
+            <span class="block sm:inline">{{ $errors->first() }}</span>
+        </div>
+    @endif
     <h1 class="text-center mx-3 font-kaisei md:my-8 text-3xl">今日はどこでととのう...？</h1>
     <div class="flex flex-col md:flex-row items-start md:items-center justify-center  mx-auto px-4">
         <!-- 検索フォームとボタンのラッパー -->

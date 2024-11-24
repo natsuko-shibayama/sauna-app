@@ -12,28 +12,8 @@ use Illuminate\View\View;
 class AuthenticatedSessionController extends Controller
 {
     /**
-     * Display the login view.
-     */
-    public function create(): View
-    {
-        return view('auth.login');
-    }
-
-    /**
-     * Handle an incoming authentication request.
-     */
-    public function store(LoginRequest $request): RedirectResponse
-    {
-        $request->authenticate();
-
-        $request->session()->regenerate();
-
-        // 管理画面トップにリダイレクト
-        return redirect()->intended(route('admin.top', absolute: false));
-    }
-
-    /**
      * Destroy an authenticated session.
+     * ログインはGoogleControllerで記載済み。ログアウトのみ、こちらで記載
      */
     public function destroy(Request $request): RedirectResponse
     {
@@ -44,6 +24,6 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerateToken();
 
         // ログイン画面にリダイレクト
-        return redirect()->intended(route('login', absolute: false));
+        return redirect()->intended(route('top', absolute: false));
     }
 }

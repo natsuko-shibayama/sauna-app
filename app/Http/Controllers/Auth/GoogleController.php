@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Facades\Log;
 
 class GoogleController extends Controller
 {
@@ -45,7 +46,12 @@ class GoogleController extends Controller
                 $user->name = $googleUser->getName();
                 $user->email = $googleUser->getEmail();
                 $user->google_id = $googleUser->getId();
+                $user->avatar = $googleUser->getAvatar();
                 $user->password = "password";
+                $user->save();
+            }else{
+                // 既存ユーザーでアバターを更新する場合
+                $user->avatar = $googleUser->getAvatar();
                 $user->save();
             }
 
@@ -53,8 +59,10 @@ class GoogleController extends Controller
 
             return redirect()->route('top');
         } catch (\Exception $e) {
-            // todo エラーを画面に表示
-            return redirect('top')->withErrors('Google認証に失敗しました。');
+            // エラーログを記録
+            Log::error('Google認証エラー:'. $e->getMessage());
+            // エラーを画面に表示
+            return redirect()->route('top')->withErrors('Google認証に失敗しました。もう一度お試しください。');
         }
     }
 }
