@@ -62,7 +62,7 @@ $(function(){
     });
 })
 
-// 検索画面ーユーザ画面
+// ユーザ画面ーTOP画面の検索モーダル
 $(function(){
     // こだわり検索モーダル
     $('#user_commitment').on('click', function(){
@@ -100,6 +100,52 @@ $(function(){
 
     // エリアクリアボタン
     $('#user_area_clear').on('click', function(){
+        $('#kanagawa').prop('checked', false);
+        $('#gunma').prop('checked', false);
+        $('#tokyo').prop('checked', false);
+        $('#saitama').prop('checked', false);
+        $('#chiba').prop('checked', false);
+        $('#ibaraki').prop('checked', false);
+    });
+})
+// ユーザ画面ー検索画面
+$(function(){
+    // こだわり検索モーダル
+    $('#user_search_commitment').on('click', function(){
+        let commitModal = $('#user_searchCommitmentModal');
+        if(commitModal.hasClass('hidden')){
+            commitModal.removeClass('hidden');
+        }else{
+            commitModal.addClass('hidden');
+        }
+        $('#user_search_closeCommitModal').on('click' ,function(){
+            commitModal.addClass('hidden');
+        })
+    });
+
+    // こだわりクリアボタン
+    $('#user_search_kodawari_clear').on('click', function(){
+        $('#has_loyly').prop('checked', false);
+        $('#has_water_bath').prop('checked', false);
+        $('#has_outdoor_bath').prop('checked', false);
+        $('#has_chair').prop('checked', false);
+    });
+
+    // エリア検索モーダル
+    $('#user_search_area').on('click', function() {
+        let ariaModal = $('#user_searchAreaModal');
+        if(ariaModal.hasClass('hidden')){
+            ariaModal.removeClass('hidden');
+        }else{
+            ariaModal.addClass('hidden');
+        }
+        $('#user_search_closeAriaModal').on('click' ,function(){
+            ariaModal.addClass('hidden');
+        })
+    });
+
+    // エリアクリアボタン
+    $('#user_search_area_clear').on('click', function(){
         $('#kanagawa').prop('checked', false);
         $('#gunma').prop('checked', false);
         $('#tokyo').prop('checked', false);

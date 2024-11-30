@@ -3,19 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\UpdateSaunaFacilityRequest;
 use App\Models\SaunaFacility;
 
 class UserController extends Controller
 {
-    // ユーザー画面トップページ
+    // トップ画面
     public function top(Request $request)
     {
-        // dd($request);
         $query = $this->getQuery($request);
         $saunaFacilities = $query->get();
-        // $saunaFacilities = SaunaFacility::all();
-        // dd($saunaFacilities);
+
         return view('user.top', [
             'saunaFacilities' => $saunaFacilities,
             'name' => $request->name,
@@ -32,62 +29,69 @@ class UserController extends Controller
         ]);
     }
 
+    // サウナ一覧画面（全件表示）
+    public function index()
+    {
+        $saunaFacilities = SaunaFacility::all();
+
+        return view('user.index', ['saunaFacilities' => $saunaFacilities]);
+    }
+
+    // 一覧画面での検索
+    public function search(Request $request)
+    {
+        $query = $this->getQuery($request);
+        $saunaFacilities = $query->get();
+
+        return view('user.index', [
+            'saunaFacilities' => $saunaFacilities,
+            'request' => $request,
+        ]);
+    }
+
     private function getQuery(Request $request)
     {
-        $query = SaunaFacility::query(); //クエリ取得するための変数定義
-        // こだわり検索
-        if($request->name){
-            $query->where('name', 'like', "%{$request->name}%");//クエリに部分一致の条件を追加
+        $query = SaunaFacility::query();
+
+        if ($request->name) {
+            $query->where('name', 'like', "%{$request->name}%");
         }
-        if($request->has_loyly){
+        if ($request->has_loyly) {
             $query->where('has_loyly', 1);
         }
-        if($request->has_water_bath){
+        if ($request->has_water_bath) {
             $query->where('has_water_bath', 1);
         }
-        if($request->has_outdoor_bath){
+        if ($request->has_outdoor_bath) {
             $query->where('has_outdoor_bath', 1);
         }
-        if($request->has_chair){
+        if ($request->has_chair) {
             $query->where('has_chair', 1);
         }
 
         $areas = [];
-        // エリア検索
-        if($request->kanagawa){
+        if ($request->kanagawa) {
             $areas[] = '神奈川県';
         }
-        if($request->gunma){
+        if ($request->gunma) {
             $areas[] = '群馬県';
         }
-        if($request->tokyo){
+        if ($request->tokyo) {
             $areas[] = '東京都';
         }
-        if($request->saitama){
+        if ($request->saitama) {
             $areas[] = '埼玉県';
         }
-        if($request->chiba){
+        if ($request->chiba) {
             $areas[] = '千葉県';
         }
-        if($request->ibaraki){
+        if ($request->ibaraki) {
             $areas[] = '茨城県';
         }
-        if(count($areas) > 0){
+        if (count($areas) > 0) {
             $query->whereIn('prefecture', $areas);
         }
-        $query->where('recommendation', 1);
-        return $query;
-    }
 
-    // ユーザー画面からのサウナ詳細画面表示
-    public function saunaFacilities(Request $request, int $saunaFacilityId)
-    {
-        // dd($request, $saunaFacilityId);
-        $saunaFacility = SaunaFacility::with('saunas')->findOrFail($saunaFacilityId);
-        // dd($saunaFacility->name);
-        return view('user.show', [
-            'saunaFacility' => $saunaFacility,
-            // 'saunas' => $saunaFacility->saunas
-        ]);
+        return $query;
     }
 }

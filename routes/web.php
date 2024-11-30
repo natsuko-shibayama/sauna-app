@@ -39,8 +39,11 @@ Route::prefix('admin')->name('admin.')->middleware('auth:admin')->group(function
 
 // ユーザー画面
 Route::get('/', [UserController::class, 'top'])->name('top');
+// ユーザー側のサウナ一覧画面
+Route::get('/index', [UserController::class, 'index'])->name('index');
+// ユーザー側の検索画面
+Route::get('/search', [UserController::class, 'search'])->name('search');
 // ユーザー側のサウナ詳細画面
 Route::get('saunaFacilities/{saunaFacilityId}', [UserController::class, 'saunaFacilities'])->name('saunaFacilities');
-
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('auth.google');
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
