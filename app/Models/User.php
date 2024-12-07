@@ -43,4 +43,10 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    /**中間テーブルに関しての記述 */
+    public function favorites()
+    {
+        return $this->belongsToMany(SaunaFacility::class, 'favorites');
+    }
 }
