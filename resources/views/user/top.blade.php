@@ -9,7 +9,7 @@
     <div class="flex flex-col md:flex-row items-start md:items-center justify-center  mx-auto px-4">
         <!-- 検索フォームとボタンのラッパー -->
         <div class="w-full md:w-1/2 md:pr-4">
-            <form class="mb-4" method="GET">
+            <form class="mb-4" method="GET" action="{{ route('index') }}">
                 <div class="relative">
                     <input
                         type="search"
@@ -52,11 +52,11 @@
         <div class="modal-content bg-white p-6 rounded-lg">
             <span class="closeModal cursor-pointer text-gray-500 text-2xl" id="user_closeCommitModal">&times;</span>
             <h2 class="text-center text-xl font-bold mb-4">こだわり検索</h2>
-            <form method="GET">
+            <form method="GET" action="{{ route('index') }}">
                 <div class="ml-3 pb-3">
                     <input type="checkbox" id="has_loyly" name="has_loyly"
-                     {{ $has_loyly ? 'checked' : null }}
-                     >
+                    {{ $has_loyly ? 'checked' : null }}
+                    >
                     <label for="has_loyly">ロウリュ</label>
                 </div>
                 <div class="ml-3 pb-3">
@@ -94,7 +94,7 @@
         <div class="modal-content bg-white p-6 rounded-lg">
             <span class="closeModal cursor-pointer text-gray-500 text-2xl" id="user_closeAriaModal">&times;</span>
             <h2 class="text-center text-xl font-bold mb-4">エリア検索</h2>
-            <form method="GET">
+            <form method="GET" action="{{ route('index') }}">
                 <div class="ml-3 pb-3">
                     <input type="checkbox" id="kanagawa" name="kanagawa"
                     {{ $kanagawa ? 'checked' : null }}
@@ -148,7 +148,6 @@
         <div class="container px-5 py-24 mx-auto">
             <h1 class="text-center mx-3 font-kaisei md:my-8 text-3xl">おすすめ。</h1>
             <div class="flex -m-4 w-full">
-                {{-- <button id="prev">◀︎</button> --}}
                 <div id="carousel" class="flex transition duration-300 ease-in-out whitespace-nowrap overflow-x-auto">
                     @foreach ( $saunaFacilities as $saunaFacility )
                         <div class="p-4 saunaElement" style="width:450px;">
@@ -212,7 +211,6 @@
 
                     @endforeach
                 </div>
-                {{-- <button id="next">▶︎</button> --}}
             </div>
         </div>
     </section>
