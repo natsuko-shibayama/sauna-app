@@ -110,49 +110,65 @@ $(function(){
 })
 // ユーザ画面ー検索画面
 $(function(){
+    $('#clearForm').on('click' ,function(){
+        keyWordClear();
+        kodawariClear();
+        ariaClear();
+    })
+
     // こだわり検索モーダル
+    let commitModal = $('#user_searchCommitmentModal');
     $('#user_search_commitment').on('click', function(){
-        let commitModal = $('#user_searchCommitmentModal');
-        if(commitModal.hasClass('hidden')){
-            commitModal.removeClass('hidden');
-        }else{
-            commitModal.addClass('hidden');
-        }
-        $('#user_search_closeCommitModal').on('click' ,function(){
-            commitModal.addClass('hidden');
-        })
+        commitModal.removeClass('hidden');
     });
+    $('#user_search_closeCommitModal').on('click' ,function(){
+        commitModal.addClass('hidden');
+    })
+    $('#select_kodawari').on('click' ,function(){
+        commitModal.addClass('hidden');
+    })
 
     // こだわりクリアボタン
     $('#user_search_kodawari_clear').on('click', function(){
+        kodawariClear();
+    });
+
+    // エリア検索モーダル
+    let ariaModal = $('#user_searchAreaModal');
+    $('#user_search_area').on('click', function() {
+        ariaModal.removeClass('hidden');
+    });
+    $('#user_search_closeAriaModal').on('click' ,function(){
+        ariaModal.addClass('hidden');
+    })
+    $('#select_area').on('click' ,function(){
+        ariaModal.addClass('hidden');
+    })
+
+    // エリアクリアボタン
+    $('#user_search_area_clear').on('click', function(){
+        ariaClear();
+    });
+
+    const keyWordClear = function(){
+        $('#name').val("");
+    }
+
+    const kodawariClear = function(){
         $('#has_loyly').prop('checked', false);
         $('#has_water_bath').prop('checked', false);
         $('#has_outdoor_bath').prop('checked', false);
         $('#has_chair').prop('checked', false);
-    });
+    }
 
-    // エリア検索モーダル
-    $('#user_search_area').on('click', function() {
-        let ariaModal = $('#user_searchAreaModal');
-        if(ariaModal.hasClass('hidden')){
-            ariaModal.removeClass('hidden');
-        }else{
-            ariaModal.addClass('hidden');
-        }
-        $('#user_search_closeAriaModal').on('click' ,function(){
-            ariaModal.addClass('hidden');
-        })
-    });
-
-    // エリアクリアボタン
-    $('#user_search_area_clear').on('click', function(){
+    const ariaClear = function(){
         $('#kanagawa').prop('checked', false);
         $('#gunma').prop('checked', false);
         $('#tokyo').prop('checked', false);
         $('#saitama').prop('checked', false);
         $('#chiba').prop('checked', false);
         $('#ibaraki').prop('checked', false);
-    });
+    };
 })
 
 $(function(){

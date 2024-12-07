@@ -29,23 +29,45 @@ class UserController extends Controller
         ]);
     }
 
-    // サウナ一覧画面（全件表示）
-    public function index()
+    // サウナ一覧検索画面
+    public function index(Request $request)
     {
-        $saunaFacilities = SaunaFacility::all();
-
-        return view('user.index', ['saunaFacilities' => $saunaFacilities]);
-    }
-
-    // 一覧画面での検索
-    public function search(Request $request)
-    {
+        // dd($request);
         $query = $this->getQuery($request);
         $saunaFacilities = $query->get();
 
+        // こだわり検索
+        $filters = collect([
+            'has_loyly' => $request->has_loyly ? 'ロウリュ' : null,
+            'has_water_bath' => $request->has_water_bath ? '水風呂' : null,
+            'has_outdoor_bath' => $request->has_outdoor_bath ? '外気浴' : null,
+            'has_chair' => $request->has_chair ? 'ととのい椅子' : null,
+        ])->filter();
+        // エリア検索
+        $areas = collect([
+            'kanagawa' => $request->kanagawa ? '神奈川' : null,
+            'gunma' => $request->gunma ? '群馬' : null,
+            'tokyo' => $request->tokyo ? '東京' : null,
+            'saitama' => $request->saitama ? '埼玉' : null,
+            'chiba' => $request->chiba ? '千葉' : null,
+            'ibaraki' => $request->ibaraki ? '茨城' : null,
+        ])->filter();
         return view('user.index', [
             'saunaFacilities' => $saunaFacilities,
             'request' => $request,
+            'name' => $request->name,
+            'filters' => $filters,
+            'areas' => $areas,
+            'has_loyly' => $request->has_loyly,
+            'has_water_bath' => $request->has_water_bath,
+            'has_outdoor_bath' => $request->has_outdoor_bath,
+            'has_chair' => $request->has_chair,
+            'kanagawa' => $request->kanagawa,
+            'gunma' => $request->gunma,
+            'tokyo' => $request->tokyo,
+            'saitama' => $request->saitama,
+            'chiba' => $request->chiba,
+            'ibaraki' => $request->ibaraki,
         ]);
     }
 
