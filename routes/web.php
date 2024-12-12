@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\SaunaController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SaunaFacilityController;
@@ -36,14 +37,21 @@ Route::prefix('admin')->name('admin.')->middleware('auth:admin')->group(function
     });
 });
 
-
 // ユーザー画面
 Route::get('/', [UserController::class, 'top'])->name('top');
 // ユーザー側のサウナ一覧画面
 Route::get('/index', [UserController::class, 'index'])->name('index');
-// // ユーザー側の検索画面
-// Route::get('/search', [UserController::class, 'search'])->name('search');
 // ユーザー側のサウナ詳細画面
 Route::get('saunaFacilities/{saunaFacilityId}', [UserController::class, 'saunaFacilities'])->name('saunaFacilities');
-Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('auth.google');
-Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
+
+// お気に入り機能
+Route::middleware(['auth'])->prefix('favorites')->group(function(){
+    Route::post('/{saunaFacility}', [FavoriteController::class, 'store'])->name('favorites.store'); // お気に入り追加
+    Route::delete('/{saunaFacility}', [FavoriteController::class, 'destroy'])->name('favorites.destroy'); // お気に入り削除
+});
+
+// Google認証ルート
+Route::prefix('auth')->group(function(){
+    Route::get('/google', [GoogleController::class, 'redirectToGoogle'])->name('auth.google');
+    Route::get('/google/callback', [GoogleController::class, 'handleGoogleCallback']);
+});
