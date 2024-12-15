@@ -45,9 +45,9 @@ Route::get('/index', [UserController::class, 'index'])->name('index');
 Route::get('saunaFacilities/{saunaFacilityId}', [UserController::class, 'saunaFacilities'])->name('saunaFacilities');
 
 // お気に入り機能
-Route::middleware(['auth'])->prefix('favorites')->group(function(){
-    Route::post('/{saunaFacility}', [FavoriteController::class, 'store'])->name('favorites.store'); // お気に入り追加
-    Route::delete('/{saunaFacility}', [FavoriteController::class, 'destroy'])->name('favorites.destroy'); // お気に入り削除
+Route::middleware(['auth'])->prefix('saunaFacilities/{saunaFacilityId}/favorites')->group(function(){
+    Route::post('/', [FavoriteController::class, 'store'])->name('favorites.store'); // お気に入り追加
+    Route::delete('/', [FavoriteController::class, 'destroy'])->name('favorites.destroy'); // お気に入り削除
 });
 
 // Google認証ルート
