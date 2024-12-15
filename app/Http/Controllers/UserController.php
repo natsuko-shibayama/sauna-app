@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\SaunaFacility;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -120,12 +121,12 @@ class UserController extends Controller
     // ユーザー画面からのサウナ詳細画面表示
     public function saunaFacilities(Request $request, int $saunaFacilityId)
     {
-        // dd($request, $saunaFacilityId);
         $saunaFacility = SaunaFacility::with('saunas')->findOrFail($saunaFacilityId);
-        // dd($saunaFacility->name);
+        $user = Auth::user();
+        $isFavorite = $user->favorites()->where('sauna_facility_id', $saunaFacilityId)->exists();
         return view('user.show', [
             'saunaFacility' => $saunaFacility,
-            // 'saunas' => $saunaFacility->saunas
+            'isFavorite' => $isFavorite,
         ]);
     }
 }

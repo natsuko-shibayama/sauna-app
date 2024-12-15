@@ -14,8 +14,11 @@ class FavoriteController extends Controller
         $user = Auth::user();
         //中間テーブルにレコードを追加
         $user->favorites()->attach($saunaFacilityId);
-        // 成功メッセージを返す
-        return back()->with('success', 'お気に入りに追加しました！');
+
+        return redirect()->route('saunaFacilities' ,[
+            'saunaFacilityId' => $saunaFacilityId
+        ]);
+
     }
 
     public function destroy($saunaFacilityId)
@@ -24,7 +27,9 @@ class FavoriteController extends Controller
         $user = Auth::user();
         // 中間テーブルの該当レコードを削除
         $user->favorites()->detach($saunaFacilityId);
-        return back()->with('success', 'お気に入りから削除しました！');
+        return redirect()->route('saunaFacilities' ,[
+            'saunaFacilityId' => $saunaFacilityId
+        ]);
     }
 
 }
