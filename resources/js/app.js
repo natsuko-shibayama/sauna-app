@@ -150,6 +150,7 @@ $(function(){
         ariaClear();
     });
 
+
     const keyWordClear = function(){
         $('#name').val("");
     }
@@ -230,22 +231,22 @@ $(document).ready(function(){
         return visibleCount * saunaWidth;
     }
 
-    // ナビゲーションボタンの表示/非表示を制御する関数
-    function updateCarouselControls() {
-        var totalScrollWidth = $carousel[0].scrollWidth;
-        var visibleWidth = $carousel.outerWidth();
+    // // ナビゲーションボタンの表示/非表示を制御する関数
+    // function updateCarouselControls() {
+    //     var totalScrollWidth = $carousel[0].scrollWidth;
+    //     var visibleWidth = $carousel.outerWidth();
 
-        if (totalScrollWidth > visibleWidth) {
-            $next.show();
-            $prev.show();
-        } else {
-            $next.hide();
-            $prev.hide();
-        }
-    }
+    //     if (totalScrollWidth > visibleWidth) {
+    //         $next.show();
+    //         $prev.show();
+    //     } else {
+    //         $next.hide();
+    //         $prev.hide();
+    //     }
+    // }
 
-    // 初期設定
-    updateCarouselControls();
+    // // 初期設定
+    // updateCarouselControls();
 
     // ウインドウリサイズ時に再計算
     $(window).resize(function(){
@@ -268,3 +269,4 @@ $(document).ready(function(){
         }, 'slow');
     });
 });
+

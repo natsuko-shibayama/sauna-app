@@ -18,7 +18,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Kaisei+Decol:wght@400;500;700&display=swap" rel="stylesheet">
 
         <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/user.js'])
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-white">
