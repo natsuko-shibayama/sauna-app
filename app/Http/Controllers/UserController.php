@@ -116,4 +116,16 @@ class UserController extends Controller
 
         return $query;
     }
+
+    // ユーザー画面からのサウナ詳細画面表示
+    public function saunaFacilities(Request $request, int $saunaFacilityId)
+    {
+        // dd($request, $saunaFacilityId);
+        $saunaFacility = SaunaFacility::with('saunas')->findOrFail($saunaFacilityId);
+        // dd($saunaFacility->name);
+        return view('user.show', [
+            'saunaFacility' => $saunaFacility,
+            // 'saunas' => $saunaFacility->saunas
+        ]);
+    }
 }
