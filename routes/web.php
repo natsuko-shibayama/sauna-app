@@ -50,6 +50,11 @@ Route::middleware(['auth'])->prefix('saunaFacilities/{saunaFacilityId}/favorites
     Route::delete('/', [FavoriteController::class, 'destroy'])->name('favorites.destroy'); // お気に入り削除
 });
 
+//口コミ投稿機能
+Route::middleware(['auth'])->prefix('saunaFacilities/{saunaFacilityId}/reviews')->group(function(){
+    Route::post('/',[ReviewController::class, 'store'])->name('reviews.store');
+});
+
 // Google認証ルート
 Route::prefix('auth')->group(function(){
     Route::get('/google', [GoogleController::class, 'redirectToGoogle'])->name('auth.google');
