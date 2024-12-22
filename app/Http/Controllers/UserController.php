@@ -123,7 +123,10 @@ class UserController extends Controller
     {
         $saunaFacility = SaunaFacility::with('saunas')->findOrFail($saunaFacilityId);
         $user = Auth::user();
-        $isFavorite = $user->favorites()->where('sauna_facility_id', $saunaFacilityId)->exists();
+        $isFavorite = false;
+        if($user){
+            $isFavorite = $user->favorites()->where('sauna_facility_id', $saunaFacilityId)->exists();
+        }
         return view('user.show', [
             'saunaFacility' => $saunaFacility,
             'isFavorite' => $isFavorite,
