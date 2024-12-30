@@ -45,8 +45,8 @@
                         <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.76c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.076-4.076a1.526 1.526 0 0 1 1.037-.443 48.282 48.282 0 0 0 5.68-.494c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z" />
                     </svg>
                 </button>
-                @include('components.user.modal')
             </div>
+            @include('components.user.modal')
         　@endauth
     </div>
 
@@ -187,30 +187,34 @@
                     <h3 class="text-xl mr-4">口コミ一覧</h3>
                 </div>
                 <div class="flex items-center mx-1 my-4">
-                    {{-- <section class="text-gray-600 body-font"> --}}
-                        <div class="container px-5 py-24 mx-auto">
-                            @foreach($saunaFacility->reviews as $review)
-                                <div class="flex items-center lg:w-full mx-auto border-b pb-10 mb-10 border-gray-200 sm:flex-row flex-col">
-                                    <div class="sm:w-32 sm:h-32 h-20 w-20 sm:mr-10 inline-flex items-center justify-center rounded-full text-indigo-500 flex-shrink-0">
-                                        <img src="{{ $review->user->avatar }}" alt="User Avatar" class="w-30 h-30 rounded-full mr-4">
-                                        {{-- <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="sm:w-16 sm:h-16 w-10 h-10" viewBox="0 0 24 24">
-                                            <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
-                                        </svg> --}}
-                                    </div>
-                                    <div class="flex-grow sm:text-left text-center mt-6 sm:mt-0">
-                                        <h2 class="text-gray-900 text-lg title-font font-medium mb-2">{{ Auth::user()->name }}</h2>
-                                        <p class="leading-relaxed text-base">
-                                            {{ $review->visit_date }}
-                                        </p>
-                                        <p class="leading-relaxed text-base">
-                                            {{ $review->review }}
-                                        </p>
-
-                                    </div>
+                    <div class="container px-5 py-24 mx-auto">
+                        @foreach($saunaFacility->reviews as $review)
+                            <div class="flex items-center lg:w-full mx-auto border-b pb-10 mb-10 border-gray-200 sm:flex-row flex-col">
+                                <div class="sm:w-32 sm:h-32 h-20 w-20 sm:mr-10 inline-flex items-center justify-center rounded-full text-indigo-500 flex-shrink-0">
+                                    <img src="{{ $review->user->avatar }}" alt="User Avatar" class="w-30 h-30 rounded-full mr-4">
+                                    {{-- <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="sm:w-16 sm:h-16 w-10 h-10" viewBox="0 0 24 24">
+                                        <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                                    </svg> --}}
                                 </div>
-                            @endforeach
-                        </div>
-                    {{-- </section> --}}
+                                <div class="flex-grow sm:text-left text-center mt-6 sm:mt-0">
+                                    <h2 class="text-gray-900 text-lg title-font font-medium mb-2">{{ $review->user->name }}</h2>
+                                    <div class="leading-relaxed text-base">
+                                        <span class="mr-2 mb-3">訪問日:</span>
+                                        <span>{{ $review->visit_date }}</span>
+                                    </div>
+                                    <div class="leading-relaxed text-base">
+                                        <span class="mr-2 mb-3">おすすめ度:</span>
+                                        <span>{{ $review->rating }}</span>
+                                    </div>
+                                    <div class="leading-relaxed text-base">
+                                        <span class="mb-3">口コミ:</span>
+                                        <div>{{ $review->review }}</div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>

@@ -220,17 +220,20 @@ $(function(){
 $(document).ready(function() {
     // モーダルとトリガーするボタン
     const $modal = $('#crud-modal');
+    const $background = $('#crud-modal-background');
     const $openButton = $('#review_button');
     const $closeButton = $modal.find('[data-modal-toggle="crud-modal"]');
 
     // モーダルを開く
     $openButton.on('click', function() {
         $modal.removeClass('hidden').addClass('flex').attr('aria-hidden', 'false'); // hiddenを削除、flexを追加
+        $background.removeClass('hidden');
     });
 
     // モーダルを閉じる
     $closeButton.on('click', function() {
         $modal.addClass('hidden').removeClass('flex').attr('aria-hidden', 'true'); // hiddenを追加、flexを削除
+        $background.addClass('hidden');
     });
 });
 
