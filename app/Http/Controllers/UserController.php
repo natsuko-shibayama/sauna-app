@@ -121,8 +121,11 @@ class UserController extends Controller
     // ユーザー画面からのサウナ詳細画面表示
     public function saunaFacilities(Request $request, int $saunaFacilityId)
     {
-        $saunaFacility = SaunaFacility::with('saunas')->findOrFail($saunaFacilityId);
+        $saunaFacility = SaunaFacility::with(['saunas', 'reviews.user'])->findOrFail($saunaFacilityId);
+        // n+1問題を解決するためにここでreviewも配列の中に一緒にwithで取得しておく
+        // dd($saunaFacility);
         $user = Auth::user();
+        // お気に入り
         $isFavorite = false;
         if($user){
             $isFavorite = $user->favorites()->where('sauna_facility_id', $saunaFacilityId)->exists();

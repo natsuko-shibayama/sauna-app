@@ -225,59 +225,61 @@ $(document).ready(function() {
 
     // モーダルを開く
     $openButton.on('click', function() {
-        $modal.removeClass('hidden').addClass('flex'); // hiddenを削除、flexを追加
+        $modal.removeClass('hidden').addClass('flex').attr('aria-hidden', 'false'); // hiddenを削除、flexを追加
     });
 
     // モーダルを閉じる
     $closeButton.on('click', function() {
-        $modal.addClass('hidden').removeClass('flex'); // hiddenを追加、flexを削除
+        $modal.addClass('hidden').removeClass('flex').attr('aria-hidden', 'true'); // hiddenを追加、flexを削除
     });
 });
 
 $(document).ready(function() {
-    let selectedRating = 0; // 選択された星の値を保持
+    // let selectedRating = 0; // 選択された星の値を保持
 
-    // 星のクリックイベント
-    $('#rating-stars .star').on('click', function () {
-        selectedRating = $(this).data('value'); // クリックされた星の値を取得
+    // // 星のクリックイベント
+    // $('#rating-stars .star').on('click', function () {
+    //     selectedRating = $(this).data('value'); // クリックされた星の値を取得
 
-        // 全ての星をデフォルト状態に戻す
-        $('#rating-stars .star').removeClass('text-yellow-500'); // 色をリセット
+    //     // 全ての星をデフォルト状態に戻す
+    //     $('#rating-stars .star').removeClass('text-yellow-500'); // 色をリセット
 
-        // クリックした星まで色をつける
-        for (let i = 1; i <= selectedRating; i++) {
-            $(`#rating-stars .star[data-value="${i}"]`).addClass('text-yellow-500'); // 選択済みの星を黄色に
-        }
-    });
+    //     // クリックした星まで色をつける
+    //     for (let i = 1; i <= selectedRating; i++) {
+    //         $(`#rating-stars .star[data-value="${i}"]`).addClass('text-yellow-500'); // 選択済みの星を黄色に
+    //     }
+    // });
 
-    $('#reviewForm').on('submit', function(e) {
-        e.preventDefault(); // フォームのデフォルトの送信を防止
+    // $('#reviewForm').on('submit', function(e) {
+    //     e.preventDefault(); // フォームのデフォルトの送信を防止
 
-        var formData = new FormData(this); // フォーム内の全データを取得
+    //     // console.log('this:', this);//thisの中のデータをpickできるようにあとで変更する
+    //     var formData = new FormData(this); // フォーム内の全データを取得
+    //     console.log('送信データ:', formData);
 
-        $.ajax({
-            url: "/reviews", // サーバー側のエンドポイント
-            type: 'POST',
-            data: formData,
-            processData: false, // jQuery によるデータの自動処理を無効化（送信するデータが FormData オブジェクト の場合必須）
-            contentType: false, // コンテンツタイプの設定を無効化（FormData を使用してファイルやバイナリデータを含むデータを送信する場合必須）
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // CSRFトークンの設定（Ajaxを使ったリクエストでは@csrfと書いてもトークンは含まれないので、ここに書く）
-            },
-        })
-        .done(function(response) {
-            // 成功時の処理
-            alert('投稿が成功しました！');
-        })
-        .fail(function(xhr, status, error) {
-            // エラー時の処理
-            alert('投稿に失敗しました。');
-        })
-        .always(function() {
-            // 成否に関わらず実行される処理
-            console.log('リクエストが完了しました。');
-        });
-    });
+    //     $.ajax({
+    //         url: "/reviews", // サーバー側のエンドポイント
+    //         type: 'POST',
+    //         data: formData,
+    //         processData: false, // jQuery によるデータの自動処理を無効化（送信するデータが FormData オブジェクト の場合必須）
+    //         contentType: false, // コンテンツタイプの設定を無効化（FormData を使用してファイルやバイナリデータを含むデータを送信する場合必須）
+    //         headers: {
+    //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // CSRFトークンの設定（Ajaxを使ったリクエストでは@csrfと書いてもトークンは含まれないので、ここに書く）
+    //         },
+    //     })
+    //     .done(function(response) {
+    //         // 成功時の処理
+    //         alert('投稿が成功しました！');
+    //     })
+    //     .fail(function(xhr, status, error) {
+    //         // エラー時の処理
+    //         alert('投稿に失敗しました。');
+    //     })
+    //     .always(function() {
+    //         // 成否に関わらず実行される処理
+    //         console.log('リクエストが完了しました。');
+    //     });
+    // });
 });
 
 

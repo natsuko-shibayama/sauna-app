@@ -10,11 +10,19 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
-    /**中間テーブルに関しての記述 */
+    /**お気に入りとの関係性 */
     public function favorites()
     {
         return $this->belongsToMany(SaunaFacility::class, 'favorites');
     }
+
+    // 口コミとの関係性
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
+
 
     /**
      * The attributes that are mass assignable.

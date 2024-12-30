@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SaunaController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SaunaFacilityController;

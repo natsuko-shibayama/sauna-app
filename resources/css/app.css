@@ -51,4 +51,16 @@
     flex: 0 0 auto;
 }
 
+.stars .star {
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: transparent;
+    text-shadow: 0 0 0 black; /* 黒枠の星 */
+}
+
+.stars .star.selected {
+    color: black; /* 塗りつぶし */
+}
+
+
 
