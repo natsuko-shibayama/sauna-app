@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('sauna_facility_id')->constrained()->onDelete('cascade');
             $table->date('visit_date')->comment('訪問日');
-            $table->unsignedTinyInteger('rating')->nullable()->comment('おすすめ度');
+            $table->unsignedTinyInteger('rating')->comment('おすすめ度');
             $table->text('review')->comment('口コミ内容');
             $table->timestamps();
         });

@@ -13,7 +13,7 @@ class Review extends Model
         'user_id',
         'sauna_facility_id',
         'visit_date',
-        // 'rating',
+        'rating',
         'review',
     ];
 

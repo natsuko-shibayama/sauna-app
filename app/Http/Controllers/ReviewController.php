@@ -18,6 +18,7 @@ class ReviewController extends Controller
         $review->user_id = $user->id;
         $review->sauna_facility_id = $saunaFacilityId;
         $review->visit_date = $request->visit_date;
+        $review->rating = $request->rating;
         $review->review = $request->review;
         $review->save();
 

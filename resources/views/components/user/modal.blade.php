@@ -1,3 +1,4 @@
+<div id="crud-modal-background" class="hidden modal-background"></div>
 <div id="crud-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
     <div class="relative p-4 w-full max-w-md max-h-full">
         <!-- Modal content -->
@@ -19,21 +20,36 @@
                 @csrf
                 <!-- 訪問日 -->
                 <div class="mb-4">
-                    <label for="visit_date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">訪問日</label>
+                    <label for="visit_date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">訪問日<span class="text-red-700 pl-1">※必須</span></label>
                     <input type="date" id="visit_date" name="visit_date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:text-white">
                 </div>
                 <!-- おすすめ度 -->
-                {{-- <div class="rating">
-                    <label for="rating" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">おすすめ度</label>
+                <div class="rating mb-4">
+                    <div class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">おすすめ度<span class="text-red-700 pl-1">※必須</span></div>
                     <div class="stars flex space-x-1" id="starContainer">
-                        <span class="star bg-transparent" data-value="1">☆</span>
-                        <span class="star bg-transparent" data-value="2">☆</span>
-                        <span class="star bg-transparent" data-value="3">☆</span>
-                        <span class="star bg-transparent" data-value="4">☆</span>
-                        <span class="star bg-transparent" data-value="5">☆</span>
+                        <div class="inline-block">
+                            <input id="rating1" name="rating" type="radio" value="1">
+                            <label for="rating1">1</label>
+                        </div>
+                        <div class="inline-block">
+                            <input id="rating2" name="rating" type="radio" value="2">
+                            <label for="rating2">2</label>
+                        </div>
+                        <div class="inline-block">
+                            <input id="rating3" name="rating" type="radio" value="3">
+                            <label for="rating3">3</label>
+                        </div>
+                        <div class="inline-block">
+                            <input id="rating4" name="rating" type="radio" value="4">
+                            <label for="rating4">4</label>
+                        </div>
+                        <div class="inline-block">
+                            <input id="rating5" name="rating" type="radio" value="5">
+                            <label for="rating5">5</label>
+                        </div>
                     </div>
-                    <input type="hidden" id="ratingValue" name="rating" value="0">
-                </div> --}}
+                    {{-- <input type="hidden" id="ratingValue" name="rating" value="0"> --}}
+                </div>
 
                 <!-- 画像アップロード -->
                 {{-- <div class="mb-4">
@@ -42,7 +58,7 @@
                 </div> --}}
                 <!-- 口コミ -->
                 <div class="mb-4">
-                    <label for="review" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">口コミ</label>
+                    <label for="review" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">口コミ<span class="text-red-700 pl-1">※必須</span></label>
                     <textarea id="review" name="review" rows="4" class="block w-full text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:text-white"></textarea>
                 </div>
                 <!-- 投稿ボタン -->
