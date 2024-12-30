@@ -15,28 +15,31 @@
                 </button>
             </div>
             <!-- Modal body -->
-            <form id="reviewForm" class="p-4 md:p-5">
+            <form id="reviewForm" class="p-4 md:p-5" action="{{ route('reviews.store' , ['saunaFacilityId' => $saunaFacility->id]) }}" method="POST">
+                @csrf
                 <!-- 訪問日 -->
                 <div class="mb-4">
                     <label for="visit_date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">訪問日</label>
                     <input type="date" id="visit_date" name="visit_date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:text-white">
                 </div>
                 <!-- おすすめ度 -->
-                <div class="mb-4">
+                {{-- <div class="rating">
                     <label for="rating" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">おすすめ度</label>
-                    <div class="flex space-x-2" id="rating-stars">
-                        <span class="cursor-pointer star" data-value="1">★</span>
-                        <span class="cursor-pointer star" data-value="2">★</span>
-                        <span class="cursor-pointer star" data-value="3">★</span>
-                        <span class="cursor-pointer star" data-value="4">★</span>
-                        <span class="cursor-pointer star" data-value="5">★</span>
+                    <div class="stars flex space-x-1" id="starContainer">
+                        <span class="star bg-transparent" data-value="1">☆</span>
+                        <span class="star bg-transparent" data-value="2">☆</span>
+                        <span class="star bg-transparent" data-value="3">☆</span>
+                        <span class="star bg-transparent" data-value="4">☆</span>
+                        <span class="star bg-transparent" data-value="5">☆</span>
                     </div>
-                </div>
+                    <input type="hidden" id="ratingValue" name="rating" value="0">
+                </div> --}}
+
                 <!-- 画像アップロード -->
-                <div class="mb-4">
+                {{-- <div class="mb-4">
                     <label for="image_upload" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">画像を追加</label>
                     <input type="file" id="image_upload" name="image_upload" accept="image/*" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none dark:text-gray-400 dark:bg-gray-700 dark:border-gray-600">
-                </div>
+                </div> --}}
                 <!-- 口コミ -->
                 <div class="mb-4">
                     <label for="review" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">口コミ</label>
