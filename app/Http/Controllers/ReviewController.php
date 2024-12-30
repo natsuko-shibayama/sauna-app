@@ -22,10 +22,7 @@ class ReviewController extends Controller
         $review->save();
 
         return redirect()->route('saunaFacilities' ,[
-            'user_id' => $review->user_id,
             'saunaFacilityId' => $saunaFacilityId,
-            'visit_date' => $review->visit_date,
-            'review' => $review->review
         ]);
     }
 }
