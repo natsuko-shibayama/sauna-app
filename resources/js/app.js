@@ -217,7 +217,8 @@ $(function(){
     });
 });
 
-$(document).ready(function() {
+// ユーザ側サウナ詳細画面の口コミモーダル
+$(function(){
     // モーダルとトリガーするボタン
     const $modal = $('#crud-modal');
     const $background = $('#crud-modal-background');
@@ -237,53 +238,15 @@ $(document).ready(function() {
     });
 });
 
-$(document).ready(function() {
-    // let selectedRating = 0; // 選択された星の値を保持
-
-    // // 星のクリックイベント
-    // $('#rating-stars .star').on('click', function () {
-    //     selectedRating = $(this).data('value'); // クリックされた星の値を取得
-
-    //     // 全ての星をデフォルト状態に戻す
-    //     $('#rating-stars .star').removeClass('text-yellow-500'); // 色をリセット
-
-    //     // クリックした星まで色をつける
-    //     for (let i = 1; i <= selectedRating; i++) {
-    //         $(`#rating-stars .star[data-value="${i}"]`).addClass('text-yellow-500'); // 選択済みの星を黄色に
-    //     }
-    // });
-
-    // $('#reviewForm').on('submit', function(e) {
-    //     e.preventDefault(); // フォームのデフォルトの送信を防止
-
-    //     // console.log('this:', this);//thisの中のデータをpickできるようにあとで変更する
-    //     var formData = new FormData(this); // フォーム内の全データを取得
-    //     console.log('送信データ:', formData);
-
-    //     $.ajax({
-    //         url: "/reviews", // サーバー側のエンドポイント
-    //         type: 'POST',
-    //         data: formData,
-    //         processData: false, // jQuery によるデータの自動処理を無効化（送信するデータが FormData オブジェクト の場合必須）
-    //         contentType: false, // コンテンツタイプの設定を無効化（FormData を使用してファイルやバイナリデータを含むデータを送信する場合必須）
-    //         headers: {
-    //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // CSRFトークンの設定（Ajaxを使ったリクエストでは@csrfと書いてもトークンは含まれないので、ここに書く）
-    //         },
-    //     })
-    //     .done(function(response) {
-    //         // 成功時の処理
-    //         alert('投稿が成功しました！');
-    //     })
-    //     .fail(function(xhr, status, error) {
-    //         // エラー時の処理
-    //         alert('投稿に失敗しました。');
-    //     })
-    //     .always(function() {
-    //         // 成否に関わらず実行される処理
-    //         console.log('リクエストが完了しました。');
-    //     });
-    // });
+// ユーザ側サウナ詳細画面口コミへのいいね機能
+$(function(){
+    $('#review_favorite').on('click' , function(){
+        console.log("口コミにいいねしたよ");
+    })
 });
+
+
+
 
 
 
