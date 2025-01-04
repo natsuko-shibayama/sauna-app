@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\ReviewFavoriteController;
 use App\Http\Controllers\SaunaController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SaunaFacilityController;
@@ -54,6 +55,11 @@ Route::middleware(['auth'])->prefix('saunaFacilities/{saunaFacilityId}/favorites
 //口コミ投稿機能
 Route::middleware(['auth'])->prefix('saunaFacilities/{saunaFacilityId}/reviews')->group(function(){
     Route::post('/',[ReviewController::class, 'store'])->name('reviews.store');
+    // 口コミいいね機能
+    Route::middleware(['auth'])->prefix('{reviewId}/favorites')->group(function(){
+        Route::post('/', [ReviewFavoriteController::class, 'store'])->name('reviewFavorites.store');
+        Route::delete('/', [ReviewFavoriteController::class, 'destroy'])->name('reviewFavorites.destroy');
+    });
 });
 
 // Google認証ルート

@@ -28,4 +28,10 @@ class Review extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    // ReviewFavoriteテーブルとの関係性
+    public function reviewFavorites()
+    {
+        return $this->hasMany(ReviewFavorite::class);
+    }
 }

@@ -127,12 +127,23 @@ class UserController extends Controller
         $user = Auth::user();
         // お気に入り
         $isFavorite = false;
+        $isReviewFavorites = [];
+        if ($user) {
+            $isReviewFavorites = $user->reviewFavorites()
+                ->whereIn('review_id', $saunaFacility->reviews->pluck('id'))
+                ->pluck('review_id')
+                ->toArray();
+        }
+
+
         if($user){
             $isFavorite = $user->favorites()->where('sauna_facility_id', $saunaFacilityId)->exists();
         }
+
         return view('user.show', [
             'saunaFacility' => $saunaFacility,
             'isFavorite' => $isFavorite,
+            'isReviewFavorites' => $isReviewFavorites
         ]);
     }
 }
