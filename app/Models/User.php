@@ -28,6 +28,12 @@ class User extends Authenticatable
         return $this->hasMany(ReviewFavorite::class);
     }
 
+    // 口コミへのコメントとの関係性
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
 
 
     /**
