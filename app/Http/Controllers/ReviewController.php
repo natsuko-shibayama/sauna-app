@@ -26,4 +26,19 @@ class ReviewController extends Controller
             'saunaFacilityId' => $saunaFacilityId,
         ]);
     }
+
+    public function showComments($saunaFacilityId, $reviewId)
+    {
+        // dd([
+        //         'saunaFacilityId' => $saunaFacilityId,
+        //         'reviewId' => $reviewId
+        //     ]);
+        // 指定された口コミを取得
+        $review = Review::with('comments.user')->findOrFail($reviewId);
+
+        return view('user.review_show', [
+            'review' => $review,
+            'saunaFacilityId' => $saunaFacilityId,
+        ]);
+    }
 }

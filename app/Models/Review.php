@@ -34,4 +34,10 @@ class Review extends Model
     {
         return $this->hasMany(ReviewFavorite::class);
     }
+
+    // Commentテーブルとの関係性
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }

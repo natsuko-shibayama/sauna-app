@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ReviewFavoriteController;
@@ -60,6 +61,15 @@ Route::middleware(['auth'])->prefix('saunaFacilities/{saunaFacilityId}/reviews')
         Route::post('/', [ReviewFavoriteController::class, 'store'])->name('reviewFavorites.store');
         Route::delete('/', [ReviewFavoriteController::class, 'destroy'])->name('reviewFavorites.destroy');
     });
+
+    // 口コミコメント機能
+    Route::middleware(['auth'])->prefix('{reviewId}/comments')->group(function(){
+        Route::get('/', [ReviewController::class, 'showComments'])->name('review_show'); // コメント表示ページ
+        Route::post('/', [CommentController::class, 'store'])->name('comments.store'); // コメント投稿
+});
+
+    // // 口コミコメント表示ページ
+    // Route::get('{reviewId}/comments', [ReviewController::class, 'showComments'])->name('review_show');
 });
 
 // Google認証ルート
